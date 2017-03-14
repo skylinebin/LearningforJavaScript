@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UpandOffLight</title>
+<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="./css/mywebsite.css">
+</head>
+    <body>
+    <div class="container">
+    	<h1>触摸灯泡打开或者关闭电源</h1>
+		<img id="thelight" onclick="changeLight()" src="images/pic_bulboff.gif" width="100" height="180">
+    </div>
+
+
+        <!-- 如果要使用Bootstrap的js插件，必须先调入jQuery -->
+        <script src="./js/jquery.min.js"></script>
+        <!-- 包括所有bootstrap的js插件或者可以根据需要使用的js插件调用　-->
+        <script src="./js/bootstrap.min.js"></script> 
+        <script type="text/javascript">
+        	function changeLight(){
+        		element = document.getElementById('thelight');
+        		if (element.src.match("bulbon"))
+        		{
+        			element.src="images/pic_bulboff.gif";
+        		}
+        		else
+        		{
+        			element.src="images/pic_bulbon.gif";
+        		}
+        	}
+        </script>
+    </body>
+</html>
