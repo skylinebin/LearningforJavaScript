@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CheckIfNum</title>
+<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="./css/mywebsite.css">
+</head>
+    <body>
+	<div class="container">
+		<h1>检测输入内容是否为数字</h1>
+		<p>请输入一些数字，如果不是数字，会有弹窗提示</p>
+		<input id="inputthing" type="text" name="imputdemo">
+		<button type="button" class="btn btn-success" onclick="checkifnum()">点击进行检查</button>
+	</div>
+
+        <!-- 如果要使用Bootstrap的js插件，必须先调入jQuery -->
+        <script src="./js/jquery.min.js"></script>
+        <!-- 包括所有bootstrap的js插件或者可以根据需要使用的js插件调用　-->
+        <script src="./js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+        	function checkifnum()
+        	{
+        		var getthing = document.getElementById("inputthing").value;
+        		if(getthing==""||isNaN(getthing))
+        		{
+        			alert("您输入的不是数字，请重新输入！！");
+        		}
+        		else
+        		{
+        			alert("You are a good boy! Thanks for your support!");
+        		}
+        	}
+        </script>
+    </body>
+</html>
