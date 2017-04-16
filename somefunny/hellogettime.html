@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WebsiteIndex</title>
+<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+<link type="text/css" rel="stylesheet" href="./jedate/skin/jedate.css">
+<!-- <link type="text/css" rel="stylesheet" href="./jedate/skin/jeui.css"> -->
+
+
+</head>
+    <body>
+		<div class="container">
+				<input type="button" class="btn btn-success" id="addEnerge" value="新增" onclick="showadd()">
+				<input type="text" class="dateinp" id="choosetime" value="选择时间" placeholder="YYYY-MM-DD hh:mm:ss" value=""  readonly>
+				<input type="text" id="tser02" placeholder="2017-04-17 10:20:04"  readonly onclick="$.jeDate('#tser02',{insTrigger:false,skinCell:'jedateblue',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})">
+				<input type="text" id="tser03" placeholder="起始加工时间"  readonly onclick="$.jeDate('#tser03',{insTrigger:false,skinCell:'jedateblue',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})">
+<!--    			 	<input class="workinput" id="test2" type="text" placeholder="2017-04-17 10:20:04"  readonly>
+				<span class="wicon" onClick="$.jeDate('#test2'{insTrigger:false,isTime:true,format:'YYYY-MM-DD hh:mm:ss'})"></span> -->
+				<div class="testnew">
+					<span>获取时间信息</span>
+					<input type="button" class="btn btn-success" id="gettimeinfo" value="获取" onclick="gettimes()">
+					<textarea id="showtime"></textarea>
+				</div>
+				<div class="modal fade" id="energyModal" tabindex="-1" role="dialog"
+				     aria-labelledby="materialsAndTimeModalLabel" aria-hidden="true">
+				    <div class="modal-dialog">
+				        <div class="modal-content">
+				            <div class="modal-header">
+				                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+				                        aria-hidden="true">&times;</span></button>
+				                <h4 class="modal-title" id="materialsAndTimeModalLabel">选择时间</h4>
+				            </div>
+				            <div class="modal-body">
+
+				                <div class="form-group row">
+				                    <label for="workShop" class="col-sm-4 control-label">车间</label>
+				                    <div class="col-sm-8">
+				                        <select class="form-control" id="workShop">
+				                            <option value="empty">--请选择车间--</option>
+				                        </select>
+				                    </div>
+				                </div>
+				                <div class="form-group row">
+				                    <label for="beltline" class="col-sm-4 control-label">生产线</label>
+				                    <div class="col-sm-8">
+				                        <select class="form-control" id="beltline">
+				                            <option value="empty">--请选择生产线--</option>
+				                        </select>
+				                    </div>
+				                </div>
+				                <div class="form-group row">
+				                    <label for="equipment" class="col-sm-4 control-label">设备</label>
+				                    <div class="col-sm-8">
+				                        <select class="form-control" id="equipment">
+				                            <option value="empty">--请选择设备--</option>
+				                        </select>
+				                    </div>
+				                </div>
+				                <div class="form-group row">
+				                    <label for="energy" class="col-sm-4 control-label">能耗</label>
+				                    <div class="col-sm-8">
+				                        <input type="number" class="form-control" id="energy" placeholder="请输入能耗">
+				                    </div>
+				                </div>
+				                <div class="form-group row">
+				                    <label for="time" class="col-sm-4 control-label">时间</label>
+				                    <div class="col-sm-8">
+				                        <input type="datetime-local" class="form-control" id="time" placeholder="请输入时间">
+				                    </div>
+				                </div>
+				            </div>
+				            <div class="modal-footer">
+				                <button type="button" class="btn btn-default" id="materialsAndTimeCancel">关闭</button>
+				                <button type="button" class="btn btn-primary" id="energySave">保存</button>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+			</div>
+
+        <!-- 如果要使用Bootstrap的js插件，必须先调入jQuery -->
+        <script src="./js/jquery.min.js"></script>
+        <!-- 包括所有bootstrap的js插件或者可以根据需要使用的js插件调用　-->
+        <script src="./js/bootstrap.min.js"></script>
+        <!-- <script type="text/javascript" src="./jedate/jquery-1.7.2.js"></script> -->
+		<script type="text/javascript" src="./jedate/jquery.jedate.min.js"></script>
+        <script type="text/javascript">
+        	$("#choosetime").jeDate({
+			    // isinitVal:true,
+			    // skinCell:"jedateblue",
+			    // format: 'YYYY年MM月DD日 hh:mm:ss'
+			        isinitVal:true,
+				    festival:true,
+				    ishmsVal:false,
+				    minDate: '2016-06-16 23:59:59',
+				    maxDate: $.nowDate(0),
+				    format:"YYYY-MM-DD hh:mm",
+				    zIndex:3000,
+			});
+        	// function (){
+        	// 	$("#addEnerge").on("click",showadd);
+        	// }
+        	function showadd() {
+        		$("#energyModal").modal("show");
+        	};
+        	function gettimes() {
+        		var homes = $("#tser02").val();
+        		$("#showtime").val(homes);
+
+        	}
+        </script>
+    </body>
+</html>
