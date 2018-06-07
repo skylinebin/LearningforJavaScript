@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="12">
+<meta name="author" content="12">
+<meta name="keyword" content="12">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>列表测试</title>
+<!-- <link rel="icon" href="./asset/img/PECMICON.ico" type="image/x-icon" /> -->
+<!-- start: Css -->
+<link rel="stylesheet" type="text/css" href="./asset/css/bootstrap.min.css">
+<!-- plugins -->
+<!-- <link rel="stylesheet" type="text/css" href="./asset/css/plugins/font-awesome.min.css"/>
+<link rel="stylesheet" type="text/css" href="./asset/css/plugins/simple-line-icons.css"/>
+<link rel="stylesheet" type="text/css" href="./asset/css/plugins/animate.min.css"/>
+<link rel="stylesheet" type="text/css" href="./asset/css/plugins/fullcalendar.min.css"/> -->
+<link href="./asset/css/style.css" rel="stylesheet">
+
+<link href="./asset/css/userappiont.css" rel="stylesheet">
+<!-- start date alert -->
+<link href="./asset/css/y.alert.css" rel="stylesheet">
+<!-- End date alert -->
+
+<!-- end: Css -->
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="./asset/js/html5shiv.min.js"></script>
+      <script src="./asset/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body id="mimin" class="dashboard">
+<!-- start: Header -->
+<!-- <nav class="navbar navbar-default header navbar-fixed-top">
+
+</nav> -->
+<!-- end: Header -->
+<div class="container-fluid mimin-wrapper"> 
+  <!-- start:Left Menu -->
+
+  <!-- end: Left Menu --> 
+  
+  <!-- start: content -->
+  <div id="content">
+    <div class="panel">
+      <div class="panel-body">
+        <div class="col-md-6 col-sm-12">
+          <h3 class="animated fadeInLeft">欢迎您：adminName</h3>
+          <p class="animated fadeInDown"><span class="fa  fa-map-marker"></span> 管理员</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12" style="padding:20px;">
+        <div class="col-md-12 padding-0 appointtitle">
+                已注册用户信息
+            </div>
+          <div class="col-md-12 padding-0">
+                <div class="panel">
+                        <div class="panel-heading">
+                          <h3>用户信息列表</h3>
+                        </div>
+                        <div class="addzore">
+                            <button type="button" data-toggle="modal" data-target="#adddocModal" class="btn btn-xs btn-success thisaddbtn" onclick="adduser()" > <span title="添加用户" class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;添加用户</button>
+                        </div>
+                        <div style="clear: both;"></div>
+                        <div class="panel-body">
+                          <div class="responsive-table">
+                            <div id="datatables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                              <div class="row">
+                                <div class="col-sm-12">
+                                  <table class="table table-striped table-bordered dataTable no-footer" width="100%" cellspacing="0"  style="width: 100%;">
+                                    <thead>
+                                      <tr role="row" class="titleth">
+                                        <th class="sorting_asc"style="width: 7%;text-align:center;" align="center">编号</th>
+                                        <th class="sorting_asc"style="width: 8%;text-align:center;" align="center">用户名称</th>
+                                        <th class="sorting" style="width: 15%;text-align:center;" align="center">登录密码</th>
+                                        <th class="sorting" style="width: 15%;text-align:center;" align="center">真实姓名</th>
+                                        <th class="sorting"  style="width: 15%;text-align:center;" align="center">操作</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr id="dele" role="row" class="odd">
+                                            <td align="center"></td>
+                                            <td align="center"></td>
+                                            <td align="center"></td>
+                                            <td align="center"></td>
+                                            <td align="center"></td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+    
+                              <!-- 下方的页面操作栏 -->
+                              <div class="col-sm-12 showmanagepage">
+                                <div class="guid" style="text-align: center;">
+                                        共<font class="fore" id="totalnum">0</font> 条记录 (<font id="currentpage" class="fore">0</font>/<font id="totalpage">0</font>)
+                                        <font class="next"><a class="homepage" id="homepage" style="color: #143861;" href="javascript:location.reload();">[首页]</a></font>
+                                        <span id="span1"><a class="next beforepage" href="javascript:void(0)" id="beforepage">[上页]</a></span>
+                                        <span id="span2"> <a class="fore nextpage" href="javascript:void(0)" id="nextpage">[下页]</a> </span>
+                                        <span id="span3" class="chosepage" >跳转到第<input style="width: 45px;height: 34px;line-height: 34px;text-align:center;" id="choosepage" onkeydown="if(event.keyCode==13) {realjump();$(this).blur();}"></input>页(共<font id="totalpages">0</font>页)</span>
+                                </div>
+                            </div>
+    
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+    
+    
+    
+    
+    
+            <div class="col-md-8 padding-0">
+    
+            </div>
+            <div class="col-md-4">
+              <div class="col-md-12 padding-0">
+    
+              </div>
+            </div>
+          </div>
+        </div>
+  </div>
+  <!-- end: content --> 
+
+  <!--弹出复选-->
+<div class="modal fade" id="adddocModal" tabindex="-1" role="dialog" aria-labelledby="adddocModalLabel" aria-hidden="true">
+    <div class="modal-dialog form-element">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="adddocModalLabel">添加用户</h4>
+        </div>
+        <div class="modal-body form-element-padding">
+            <div class="form-group">
+               <div id="thisordercontent" class="mainordercontent"></div>
+            </div>
+            
+
+
+          <div class="form-group">
+            <div id="thisusersvalues" class="mainordercontent">
+
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="closemie" class="btn btn-default" data-dismiss="modal">关闭</button>
+          <button id="douploadApart" type="button" onclick="doaddrequest();" class="btn btn-primary">添加用户</button>
+        </div>
+      </div>
+      <!-- /.modal-content --> 
+    </div>
+    <!-- /.modal --> 
+  </div>
+  <!--弹出复选 end--> 
+  
+
+    <!--弹出修改复选-->
+    <div class="modal fade" id="edituserModal" tabindex="-1" role="dialog" aria-labelledby="edituserModalLabel" aria-hidden="true">
+      <div class="modal-dialog form-element">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="edituserModalLabel">修改信息</h4>
+          </div>
+          <div class="modal-body form-element-padding">
+              <div class="form-group">
+                 <div id="thisordercontentss" class="mainordercontent"></div>
+              </div>
+              
+  
+  
+            <div class="form-group">
+              <div id="editthisusersvalues" class="mainordercontent">
+  
+              </div>
+            </div>
+  
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="closemie" class="btn btn-default" data-dismiss="modal">关闭</button>
+            <button id="douploadApart" type="button" onclick="doupdaterequest();" class="btn btn-primary">修改用户信息</button>
+          </div>
+        </div>
+        <!-- /.modal-content --> 
+      </div>
+      <!-- /.modal --> 
+    </div>
+    <!--弹出复选 end--> 
+
+
+</div>
+
+<!-- start: Javascript --> 
+<script src="./asset/js/jquery.min.js"></script> 
+<script src="./asset/js/jquery.ui.min.js"></script> 
+<script src="./asset/js/bootstrap.min.js"></script> 
+<!-- plugins --> 
+<!-- <script src="./asset/js/plugins/jquery.nicescroll.js"></script>  -->
+<!-- custom --> 
+<!-- <script src="./asset/js/main.js"></script>  -->
+<!-- start date alert -->
+<script src="./asset/js/y.alert.js"></script> 
+<!-- End date alert -->
+
+<script>
+        // var needdoit = document.getElementById("Chooseda");
+        // needdoit.click();
+
+
+    // $(function () {
+
+      var globaluserid = "1";
+
+//链接上跳转对应的方法
+      $('#nextpage').bind('click', realfornextpage);
+        // $('#beforepage').bind('click', realforbeforepage);
+
+// 初始化请求主页
+    firstpage();
+
+
+        var ordertypedic = [];
+        ordertypedic["mainDoctor"] = "主检";
+        ordertypedic["eye"] = "眼科";
+        ordertypedic["internal"] = "内科";
+        ordertypedic["surgical"] = "外科";
+        ordertypedic["aidexam"] = "辅助检查";
+        ordertypedic["anorectal"] = "肛肠科";
+        ordertypedic["bloodsugar"] = "血糖化验";
+
+        normaltype = ["mainDoctor","eye","internal","surgical","aidexam"];
+        studenttype = ["mainDoctor","eye","internal","surgical","aidexam","bloodsugar"];
+        allbodytype = ["mainDoctor","eye","internal","surgical","aidexam","anorectal","bloodsugar"];
+
+
+//弹出拆分框
+    function dodistribut(thisorderid){
+        // alertMsg(String(thisorderid));
+        var orderId = String(thisorderid);
+        $.ajax({
+                    url:"checkOrder",
+                    data: {
+                    "orderId": orderId,
+                    }, success: function (objects) {
+                  var objsuccess = objects.success;
+                  var objmessage = objects.message;
+                  var orderConts = objects.order;
+                  var doctors = objects.doctor;
+                  if(objsuccess){
+                    globalorderid = orderConts.id;
+                    globalordertype = String(orderConts.packageType);
+                      var thisordercons = "体检人姓名: "+String(orderConts.examName)+"&nbsp;&nbsp;&nbsp;&nbsp; 年龄: "+String(orderConts.examAge)+"&nbsp;&nbsp;&nbsp;&nbsp;体检类型: <strong>"+String(orderConts.packageType)+"</strong>&nbsp;&nbsp;&nbsp;&nbsp;预约编号: "+String(orderConts.orderCode);
+                      $("#thisordercontent").html(thisordercons);
+                    
+                    var thisordertype = String(orderConts.packageType);
+                    var chooseoption ="";
+                    if(thisordertype == "全身体检"){
+                        for (var everyoption in allbodytype){
+                            console.log(allbodytype[everyoption]);
+                            var everylabel = "<div class='everyselect'>"+String(ordertypedic[String(allbodytype[everyoption])])+"医师:"
+                            var secondselecttemp ='<select id="'+String(allbodytype[everyoption])+'doc" class="wideselect" onchange=""> ';
+                            secondselecttemp += '';
+                            var tempoptiondocs = doctors[allbodytype[everyoption]];
+                            for (var i=0;i<tempoptiondocs.length;i++) {
+                                secondselecttemp += '<option value="'+tempoptiondocs[i].id+'">'+tempoptiondocs[i].realName+'医师</option>';
+                            };
+                            secondselecttemp += '</select> </div>';
+
+                            chooseoption = chooseoption+everylabel+secondselecttemp;
+                        }
+                        
+                        $("#thisorderdoctors").html(chooseoption);
+                        // document.getElementById("douploadApart").onclick=allbodyorderApart(orderConts.id);
+                        // $('#douploadApart').bind('click', allbodyorderApart(orderConts.id));
+
+                    }else if(thisordertype == "学生体检"){
+                        for (var everyoption in studenttype){
+                            console.log(studenttype[everyoption]);
+                            var everylabel = "<div class='everyselect'>"+String(ordertypedic[String(studenttype[everyoption])])+"医师:"
+                            var secondselecttemp ='<select id="'+String(studenttype[everyoption])+'doc" class="wideselect" onchange=""> ';
+                            secondselecttemp += '';
+                            var tempoptiondocs = doctors[studenttype[everyoption]];
+                            for (var i=0;i<tempoptiondocs.length;i++) {
+                                secondselecttemp += '<option value="'+tempoptiondocs[i].id+'">'+tempoptiondocs[i].realName+'医师</option>';
+                            };
+                            secondselecttemp += '</select> </div>';
+
+                            chooseoption = chooseoption+everylabel+secondselecttemp;
+                        }
+                        
+                        $("#thisorderdoctors").html(chooseoption);
+                        // document.getElementById("douploadApart").onclick=studentorderApart(orderConts.id);
+                        // $('#douploadApart').bind('click', studentorderApart(orderConts.id));
+                    }else if(thisordertype == "常规体检"){
+                        for (var everyoption in normaltype){
+                            console.log(normaltype[everyoption]);
+                            var everylabel = "<div class='everyselect'>"+String(ordertypedic[String(normaltype[everyoption])])+"医师:"
+                            var secondselecttemp ='<select id="'+String(normaltype[everyoption])+'doc" class="wideselect" onchange=""> ';
+                            secondselecttemp += '';
+                            var tempoptiondocs = doctors[normaltype[everyoption]];
+                            for (var i=0;i<tempoptiondocs.length;i++) {
+                                secondselecttemp += '<option value="'+tempoptiondocs[i].id+'">'+tempoptiondocs[i].realName+'医师</option>';
+                            };
+                            secondselecttemp += '</select> </div>';
+
+                            chooseoption = chooseoption+everylabel+secondselecttemp;
+                        }
+                        
+                        $("#thisorderdoctors").html(chooseoption);
+                        // document.getElementById("douploadApart").onclick=normalorderApart(orderConts.id);
+                        // $('#douploadApart').bind('click', normalorderApart(orderConts.id));
+                    }
+
+
+
+
+                    }else{
+                        alertMsg(objmessage);
+                        console.log(objmessage);
+                    }
+            },error:function(xmle){
+                       $("#mymodal-sm-newprocess").modal("hide");
+                        alertMsg("操作失败，请稍后再试!");
+                      }
+              });
+
+    }
+
+
+function adduser(){
+  var allcontent = "";
+        thisuserName = "<div class='everytempcons'>用户名:&nbsp;&nbsp;&nbsp;&nbsp;";
+            thisuserName +='<input id="userNameid" type="text" class="everytempinput">';
+            thisuserName += '</div>';
+        thisuserpassword = "<div class='everytempcons'>登录密码:&nbsp;&nbsp;&nbsp;&nbsp;";
+            thisuserpassword +='<input id="userPassid" type="text" class="everytempinput">';
+            thisuserpassword += '</div>';
+
+        thisuserrealName = "<div class='everytempcons'>真实姓名:&nbsp;&nbsp;&nbsp;&nbsp;";
+            thisuserrealName +='<input id="userrealNameid" type="text" class="everytempinput">';
+            thisuserrealName += '</div>';
+
+        allcontent = thisuserName+thisuserpassword+thisuserrealName;
+    $("#thisusersvalues").html(allcontent);
+}
+
+
+function edituser(thisuserida,thisuserNamea,thisuserpassworda,thisuserrealNamea){
+  globaluserid = thisuserida;
+  var allcontent = "";
+        thisuserName = "<div class='everytempcons'>用户名:&nbsp;&nbsp;&nbsp;&nbsp;";
+            thisuserName +='<input id="lastuserNameid" type="text" value="'+String(thisuserNamea)+'" readonly="readonly"  class="everytempinput">';
+            thisuserName += '</div>';
+        thisuserpassword = "<div class='everytempcons'>登录密码:&nbsp;&nbsp;&nbsp;&nbsp;";
+            thisuserpassword +='<input id="lastuserPassid" type="text" value="'+String(thisuserpassworda)+'" class="everytempinput">';
+            thisuserpassword += '</div>';
+
+        thisuserrealName = "<div class='everytempcons'>真实姓名:&nbsp;&nbsp;&nbsp;&nbsp;";
+            thisuserrealName +='<input id="lastuserrealNameid" type="text" value="'+String(thisuserrealNamea)+'" class="everytempinput">';
+            thisuserrealName += '</div>';
+
+        allcontent = thisuserName+thisuserpassword+thisuserrealName;
+    $("#editthisusersvalues").html(allcontent);  
+
+}
+
+
+
+    var doclist = ["lastuserNameid","lastuserPassid","lastuserrealNameid"];
+    function doupdaterequest(){
+      // var valueString ="";
+      localuserid = globaluserid;
+  var tempvalue = 0;
+  for(var i=0;i<doclist.length;i++){
+            // valueString+= globaltype[i]+"_";
+            var tempstr = String($("#"+String(doclist[i])).val());
+            if(tempstr == ""){
+              tempvalue = 1;
+              alertMsg("请填写完整用户信息");
+              break;
+            }else{
+              // valueString+= String($("#"+String(partvalueId[i])).val())+"_";
+            }
+            
+    }
+
+    if(tempvalue == 0){
+      $.ajax({
+                    url:"updateUserByIdForAdmin",
+                    data: {
+                    "id":localuserid,
+                    "userName": String($("#"+String(doclist[0])).val()),
+                    "passWord": String($("#"+String(doclist[1])).val()),
+                    "realName": String($("#"+String(doclist[2])).val()),
+                    }, success: function (objects) {
+                  // var objsuccess = objects.success;
+                  // var objmessage = objects.message;
+                  // var orderConts = objects.order;
+                  // var doctors = objects.doctor;
+                  // if(objsuccess){
+                    alertMsg("修改用户信息成功");
+                    $("#closemie").click();
+                    setTimeout(function(){
+                      location.reload();
+                        },1000);
+
+
+                    // }else{
+                    //     alertMsg(objmessage);
+                    //     console.log(objmessage);
+                    // }
+            },error:function(xmle){
+                       $("#mymodal-sm-newprocess").modal("hide");
+                        alertMsg("操作失败，请稍后再试!");
+                      }
+              });    
+
+    } 
+    }
+
+
+    var onedoclist = ["userNameid","userPassid","userrealNameid"];
+    function doaddrequest(){
+      // var valueString ="";
+  var tempvalue = 0;
+  for(var i=0;i<onedoclist.length;i++){
+            // valueString+= globaltype[i]+"_";
+            var tempstr = String($("#"+String(onedoclist[i])).val());
+            if(tempstr == ""){
+              tempvalue = 1;
+              alertMsg("请填写完整用户信息");
+              break;
+            }else{
+              // valueString+= String($("#"+String(partvalueId[i])).val())+"_";
+            }
+            
+    }
+
+    if(tempvalue == 0){
+      $.ajax({
+                    url:"register",
+                    data: {
+                    "userName": String($("#"+String(onedoclist[0])).val()),
+                    "passWord": String($("#"+String(onedoclist[1])).val()),
+                    "realName": String($("#"+String(onedoclist[2])).val()),
+                    }, success: function (objects) {
+
+                    alertMsg("添加成功");
+                    $("#closemie").click();
+                    setTimeout(function(){
+                      location.reload();
+                        },1000);
+
+
+            },error:function(xmle){
+                       $("#mymodal-sm-newprocess").modal("hide");
+                        alertMsg("操作失败，请稍后再试!");
+                      }
+              });    
+
+    } 
+    }
+
+
+
+
+
+
+function realdouploadApartment(thisorderid){
+    var orderId = thisorderid;
+    var packageTypeString = "";
+    var partDoctorIdString = "";
+    var mainDoctorId = "";
+    for(var i=0;i<globaltype.length;i++){
+        if(i==0){
+            mainDoctorId = $("#"+String(globaltype[i])+"doc").val();
+        }else{
+            packageTypeString+= globaltype[i]+"_";
+            partDoctorIdString+= String($("#"+String(globaltype[i])+"doc").val())+"_";
+        }
+    }
+    packageTypeString = packageTypeString.substring(0,packageTypeString.length-1);
+    partDoctorIdString = partDoctorIdString.substring(0,partDoctorIdString.length-1);
+
+
+        $.ajax({
+                    url:"orderApart",
+                    data: {
+                    "orderId": orderId,
+                    "packageTypeString":packageTypeString,
+                    "partDoctorIdString":partDoctorIdString,
+                    "mainDoctorId":mainDoctorId,
+                    }, success: function (objects) {
+                  var objsuccess = objects.success;
+                  var objmessage = objects.message;
+                  var orderConts = objects.order;
+                  var doctors = objects.doctor;
+                  if(objsuccess){
+                    alertMsg("拆分成功");
+                    $("#closemie").click();
+                    setTimeout(function(){
+                      location.reload();
+                        },1000);
+
+
+                    }else{
+                        alertMsg(objmessage);
+                        console.log(objmessage);
+                    }
+            },error:function(xmle){
+                       $("#mymodal-sm-newprocess").modal("hide");
+                        alertMsg("操作失败，请稍后再试!");
+                      }
+              }); 
+
+
+}
+
+
+
+
+//初始化首页列表
+
+function firstpage(){
+    listusual("findUserInfoForDatatables", "1", 0, 8, "","0","asc","0");
+}
+
+
+
+
+//跳转指定页面
+function realjump(){
+    var topage = $("#choosepage").val();
+          // var totalpage = $("#totalpage").val();
+    var totalpage = document.getElementById("totalpage").innerHTML;
+    console.log(totalpage);
+    topage = parseInt(topage);
+    console.log(topage+'and'+parseInt(totalpage));
+    if(topage>0 && topage <= parseInt(totalpage)){
+        clear(); 
+        // listusual(tourl, thisdraw, thisstart, thislength, thissearchvalue,thisordercol,thisorderdir,thistype);
+        listusual("findUserInfoForDatatables", "1", String((topage-1)*8), 8, "","0","asc","1");
+        $("#currentpage").html(Number(parseInt(topage)));
+        $("#choosepage").val(Number(parseInt(topage)));
+    }else{
+    alertMsg("不存在此页数请检查后重新输入!");
+    }   
+}
+
+//跳转下一页
+function realfornextpage(){
+    listusual("findUserInfoForDatatables", "1", Number($("#currentpage").html())*8, 8, "","0","asc","3");
+}
+
+
+//跳转上一页
+function realforbeforepage(){
+    listusual("findUserInfoForDatatables", "1", Number(Number($("#currentpage").html())-Number(2))*8, 8, "","0","asc","2");
+}
+
+
+
+
+
+
+//尝试集成列表分页接口
+
+function listusual(tourl, thisdraw, thisstart, thislength, thissearchvalue,thisordercol,thisorderdir,thistype){
+    clear();
+    var choosetype = String(thistype);
+    // 用来分辨传入的是哪种类型的请求,0为首页,1为跳转,2为上一页,3为下一页
+  $.ajax({
+           url: String(tourl),
+           type:"GET",
+           data:{
+           "draw": String(thisdraw),
+           "start": String(thisstart),
+           "length":String(thislength),
+           "search[value]":String(thissearchvalue),
+           "order[0][column]":String(thisordercol),
+           "order[0][dir]":String(thisorderdir),
+           },
+            success:function(objects){
+            var objsuccess = objects.success;
+            var objmessage = objects.message;
+            if(objsuccess){
+            var totalnum = objects.recordsFiltered;
+            $("#totalnum").html(totalnum);
+            var totalpage= Math.ceil(totalnum/8);
+            allpages = totalpage;
+            $("#totalpage").html(totalpage);
+            $("#totalpages").html(totalpage);
+            var currentpage = Number(parseInt("1"));
+            if(choosetype == "0"){
+                currentpage = Number(parseInt("1"));
+            }else if(choosetype == "1"){
+                currentpage = Number(parseInt("1"));
+            }else if(choosetype == "2"){
+                currentpage = Number($("#currentpage").html())-Number(1);
+            }else if(choosetype == "3"){
+                currentpage = Number($("#currentpage").html())+Number(1);
+            }
+            
+
+            $("#currentpage").html(currentpage);
+            $("#choosepage").val(currentpage);
+            console.log(currentpage);
+                  if (currentpage>1)
+                    {
+                      $("#beforepage").removeClass("next");
+                      $("#beforepage").addClass("fore");
+                      $("#beforepage").unbind('click').bind('click',realforbeforepage);
+                    }
+                  else
+                  {
+                      $("#beforepage").removeClass("fore");
+                      $("#beforepage").addClass("next");
+                      $("#beforepage").unbind('click');
+                  }
+                  if (currentpage<totalpage)
+                    {
+                      $("#nextpage").removeClass("next");
+                      $("#nextpage").addClass("fore");
+                      $("#nextpage").unbind('click').bind('click',realfornextpage);
+                    }
+                  else
+                  {
+                      $("#nextpage").removeClass("fore");
+                      $("#nextpage").addClass("next");
+                      $("#nextpage").unbind('click');
+                  }
+
+                  var tr = $("#dele");
+                  var obj = objects.result;
+              $.each(obj, function(index,item){
+                     //克隆tr，每次遍历都可以产生新的tr
+                     var clonedTr = tr.clone();
+                     var _index = index;
+                     clonedTr.removeClass("del");
+                     clonedTr.addClass("data");
+             //循环遍历cloneTr的每一个td元素，并赋值
+
+                     clonedTr.children("td").each(function(inner_index){
+                         //根据索引为每一个td赋值
+                         switch(inner_index){
+                            case(0):
+                           $(this).html(item.id);
+                               break;
+                          case(1):
+                            $(this).html(item.userName);
+                             break;
+                           case(2):
+                            $(this).html(item.passWord);
+                             break;
+                           case(3):
+                           $(this).html(item.realName);
+                               break;
+                            case(4):
+                            $(this).html('<button type="button" data-toggle="modal" data-target="#edituserModal" class="btn btn-xs btn-success" onclick=edituser("'+String(item.id)+'","'+item.userName+'","'+item.passWord+'","'+item.realName+'") > <span title="修改用户" class="glyphicon glyphicon-pencil"></span></button>');
+                                break;
+                   }//end switch 
+                            });//end children.each
+                      clonedTr.insertBefore(tr);
+                });//end $each
+      $(".del").hide();
+      $("#test1").show();
+    }else{
+              alertMsg(objmessage);
+              $("#test1").show();
+          }
+        },error :function() {
+          alertMsg("操作失败，请与管理人员联系!");
+          }
+    })//end ajax
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function jumppage(){
+          var topage = $("#choosepage").val();
+          // var totalpage = $("#totalpage").val();
+          var totalpage = document.getElementById("totalpage").innerHTML;
+          console.log(totalpage);
+          // var totalpage = document.getElementById("totalpage").value;
+          topage = parseInt(topage);
+          console.log(topage+'and'+parseInt(totalpage));
+          if(topage>0 && topage <= parseInt(totalpage)){
+           clear();
+        //    var search= $("#filtertxt").val();
+        //    console.log(search); "start":(topage-1)*8,
+        $.ajax({
+           url:"findUserInfoForDatatables",
+           type:"GET",
+           data:{
+           "draw":1,
+           "start":(topage-1)*8,
+           "length":8,
+           "search[value]":"",
+           "order[0][column]":"0",
+           "order[0][dir]":"asc",
+           },
+            success:function(objects){
+            var objsuccess = objects.success;
+            var objmessage = objects.message;
+            if(objsuccess){
+            var totalnum = objects.recordsFiltered;
+            $("#totalnum").html(totalnum);
+            var totalpage= Math.ceil(totalnum/8);
+            allpages = totalpage;
+            $("#totalpage").html(totalpage);
+            $("#totalpages").html(totalpage);
+            var currentpage = Number(parseInt(topage));
+            $("#currentpage").html(Number(parseInt(topage)));
+            $("#choosepage").val(currentpage);
+            console.log(currentpage);
+                  if (currentpage>1)
+                    {
+                      $("#beforepage").removeClass("next");
+                      $("#beforepage").addClass("fore");
+                      $("#beforepage").unbind('click').bind('click',forbeforepage);
+                    }
+                  else
+                  {
+                      $("#beforepage").removeClass("fore");
+                      $("#beforepage").addClass("next");
+                      $("#beforepage").unbind('click');
+                  }
+                  if (currentpage<totalpage)
+                    {
+                      $("#nextpage").removeClass("next");
+                      $("#nextpage").addClass("fore");
+                      $("#nextpage").unbind('click').bind('click',fornextpage);
+                    }
+                  else
+                  {
+                      $("#nextpage").removeClass("fore");
+                      $("#nextpage").addClass("next");
+                      $("#nextpage").unbind('click');
+                  }
+
+                  var tr = $("#dele");
+                  var obj = objects.result;
+              $.each(obj, function(index,item){
+                     //克隆tr，每次遍历都可以产生新的tr
+                     var clonedTr = tr.clone();
+                     var _index = index;
+                     clonedTr.removeClass("del");
+                     clonedTr.addClass("data");
+             //循环遍历cloneTr的每一个td元素，并赋值
+
+                     clonedTr.children("td").each(function(inner_index){
+                         //根据索引为每一个td赋值
+                         switch(inner_index){
+                            case(0):
+                           $(this).html(item.id);
+                               break;
+                          case(1):
+                            $(this).html(item.userName);
+                             break;
+                           case(2):
+                            $(this).html(item.passWord);
+                             break;
+                           case(3):
+                           $(this).html(item.realName);
+                               break;
+                          //  case(4):
+                          //      $(this).html(item.age);
+                          //      break;
+                          //  case(5):
+                          //      $(this).html(ChangeRealType(item.department));
+                          //      break;
+                          //   case(6):
+                          //      $(this).html(ChangeRoleType(item.role));
+                          //      break;
+                          //   case(7):
+                          //      $(this).html(item.doctorCode);
+                          //      break;
+                            case(4):
+                            $(this).html('<button type="button" data-toggle="modal" data-target="#edituserModal" class="btn btn-xs btn-success" onclick=edituser("'+String(item.id)+'","'+item.userName+'","'+item.passWord+'","'+item.realName+'") > <span title="修改用户" class="glyphicon glyphicon-pencil"></span></button>');
+                                break;
+                   }//end switch 
+                            });//end children.each
+                      clonedTr.insertBefore(tr);
+                });//end $each
+      $(".del").hide();
+      $("#test1").show();
+    }else{
+              alertMsg(objmessage);
+              $("#test1").show();
+          }
+        },error :function() {
+          alertMsg("操作失败，请与管理人员联系!");
+          }
+    })//end ajax
+}else{
+  alertMsg("不存在此页数请检查后重新输入!");
+}
+
+} //end jumppage
+
+    function fornextpage(){
+           clear();
+        //    var search= $("#filtertxt").val();
+        //    console.log(search);
+        $.ajax({
+           url:"findUserInfoForDatatables",
+           type:"GET",
+           data:{
+           "draw":1,
+           "start":Number($("#currentpage").html())*8,
+           "length":8,
+           "search[value]":"",
+           "order[0][column]":"0",
+           "order[0][dir]":"asc",
+           },
+            success:function(objects){
+              var objsuccess = objects.success;
+              var objmessage = objects.message;
+              if(objsuccess){
+                      var totalnum = objects.recordsFiltered;
+                      $("#totalnum").html(totalnum);
+                      var totalpage= Math.ceil(totalnum/8);
+                      $("#totalpage").html(totalpage);
+                      var currentpage = Number($("#currentpage").html())+Number(1)
+                      $("#currentpage").html(Number($("#currentpage").html())+Number(1));
+                      $("#totalpages").html(totalpage);
+                      $("#choosepage").val(currentpage);
+                      // console.log(currentpage);
+
+                if (currentpage>1)
+                  {
+              	$("#beforepage").removeClass("next");
+              	$("#beforepage").addClass("fore");
+              	$("#beforepage").unbind('click').bind('click',forbeforepage);
+                  }
+                else
+                {
+              	$("#beforepage").removeClass("fore");
+              	$("#beforepage").addClass("next");
+              	$("#beforepage").unbind('click');
+                }
+                 if (currentpage<totalpage)
+                  {
+              	$("#nextpage").removeClass("next");
+              	$("#nextpage").addClass("fore");
+              	$("#nextpage").unbind('click').bind('click',fornextpage);
+
+                  }
+                else
+                {
+                    $("#nextpage").removeClass("fore");
+                    $("#nextpage").addClass("next");
+                    $("#nextpage").unbind('click');
+
+                }
+              var tr = $("#dele");
+             var obj = objects.result;
+             $.each(obj, function(index,item){
+                    //克隆tr，每次遍历都可以产生新的tr
+             var clonedTr = tr.clone();
+             var _index = index;
+           clonedTr.removeClass("del");
+           clonedTr.addClass("data");
+             //循环遍历cloneTr的每一个td元素，并赋值
+             clonedTr.children("td").each(function(inner_index){
+                            //根据索引为每一个td赋值
+                            switch(inner_index){
+                            case(0):
+                           $(this).html(item.id);
+                               break;
+                          case(1):
+                            $(this).html(item.userName);
+                             break;
+                           case(2):
+                            $(this).html(item.passWord);
+                             break;
+                           case(3):
+                           $(this).html(item.realName);
+                               break;
+                          //  case(4):
+                          //      $(this).html(item.age);
+                          //      break;
+                          //  case(5):
+                          //      $(this).html(ChangeRealType(item.department));
+                          //      break;
+                          //   case(6):
+                          //      $(this).html(ChangeRoleType(item.role));
+                          //      break;
+                          //   case(7):
+                          //      $(this).html(item.doctorCode);
+                          //      break;
+                            case(4):
+                            $(this).html('<button type="button" data-toggle="modal" data-target="#edituserModal" class="btn btn-xs btn-success" onclick=edituser("'+String(item.id)+'","'+item.userName+'","'+item.passWord+'","'+item.realName+'") > <span title="修改用户" class="glyphicon glyphicon-pencil"></span></button>');
+                                break;
+                   }//end switch 
+                  });//end children.each
+                 clonedTr.insertBefore(tr);
+                });//end $each
+                $(".del").hide();
+                $("#test1").show();
+    }else{
+          alertMsg(objmessage);
+          $("#test1").show();
+    }
+       //end success
+   },
+   error:function() {
+      alertMsg("操作失败，请与管理人员联系!");
+   }
+         })
+        }
+
+
+ function forbeforepage(){
+           clear();
+        //    var search= $("#filtertxt").val();
+        //    console.log(search); "start": (Number($("#currentpage").html())-Number(2))*8,
+        $.ajax({
+           url:"findUserInfoForDatatables",
+           type:"GET",
+           data:{
+           "draw":1,
+           "start": (Number($("#currentpage").html())-Number(2))*8,
+           "length":8,
+           "search[value]":"",
+           "order[0][column]":"0",
+           "order[0][dir]":"asc",
+           },
+            success:function(objects){
+            var objsuccess = objects.success;
+            var objmessage = objects.message;
+            if(objsuccess){
+                var totalnum = objects.recordsFiltered;
+                $("#totalnum").html(totalnum);
+                var totalpage= Math.ceil(totalnum/8);
+                $("#totalpage").html(totalpage);
+                var currentpage = Number($("#currentpage").html())-Number(1);
+                $("#currentpage").html(Number($("#currentpage").html())-Number(1));
+                $("#totalpages").html(totalpage);
+                $("#choosepage").val(currentpage);
+                var tr = $("#dele");
+                var obj = objects.result;
+                // console.log(currentpage) ;
+                //  console.log(totalpage) ;
+           if(currentpage>1)
+            {
+              $("#beforepage").removeClass("next");
+              $("#beforepage").addClass("fore");
+              $("#beforepage").unbind('click').bind('click',forbeforepage);
+            }
+          else
+          {
+            $("#beforepage").removeClass("fore");
+            $("#beforepage").addClass("next");
+            $("#beforepage").unbind('click');
+          }
+          if (currentpage<totalpage)
+            {
+              $("#nextpage").removeClass("next");
+              $("#nextpage").addClass("fore");
+              $("#nextpage").unbind('click').bind('click',fornextpage);
+            }
+          else
+          {
+              $("#nextpage").removeClass("fore");
+              $("#nextpage").addClass("next");
+              $("#nextpage").unbind('click');
+          }
+       $.each(obj, function(index,item){
+                          //克隆tr，每次遍历都可以产生新的tr
+               var clonedTr = tr.clone();
+               var _index = index;
+             clonedTr.removeClass("del");
+             clonedTr.addClass("data");
+
+               //循环遍历cloneTr的每一个td元素，并赋值
+               clonedTr.children("td").each(function(inner_index){
+
+                     switch(inner_index){
+                            case(0):
+                           $(this).html(item.id);
+                               break;
+                          case(1):
+                            $(this).html(item.userName);
+                             break;
+                           case(2):
+                            $(this).html(item.passWord);
+                             break;
+                           case(3):
+                           $(this).html(item.realName);
+                               break;
+                          //  case(4):
+                          //      $(this).html(item.age);
+                          //      break;
+                          //  case(5):
+                          //      $(this).html(ChangeRealType(item.department));
+                          //      break;
+                          //   case(6):
+                          //      $(this).html(ChangeRoleType(item.role));
+                          //      break;
+                          //   case(7):
+                          //      $(this).html(item.doctorCode);
+                          //      break;
+                            case(4):
+                            $(this).html('<button type="button" data-toggle="modal" data-target="#edituserModal" class="btn btn-xs btn-success" onclick=edituser("'+String(item.id)+'","'+item.userName+'","'+item.passWord+'","'+item.realName+'") > <span title="修改用户" class="glyphicon glyphicon-pencil"></span></button>');
+                                break;
+                   }//end switch 
+              });//end children.each
+
+             clonedTr.insertBefore(tr);
+            });//end $each
+            $(".del").hide();
+            $("#test1").show();
+    }else{
+          alertMsg(objmessage);
+          $("#test1").show();
+    }
+       //end success
+   },error:function(){
+       alertMsg("操作失败，请与管理人员联系!");
+   }
+   })
+ }
+
+
+function  clear(){
+            $(".data").remove();
+            $("#dele").show();
+            }
+
+    var formatDateTime = function (date) {
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1;
+        m = m < 10 ? ('0' + m) : m;
+        var d = date.getDate();
+        d = d < 10 ? ('0' + d) : d;
+        var h = date.getHours();
+        var minute = date.getMinutes();
+        var second = date.getSeconds();
+        minute = minute < 10 ? ('0' + minute) : minute;
+        second = second < 10 ? ('0' + second) : second;
+        return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;
+    };
+    // var testdate = "Apr 12, 2017 12:00:00 AM";
+    // 用于转换时间 先转成标准时间
+    function changetime(testdate){
+      if(testdate != null)
+      {
+      var starttime = new Date(testdate);
+      var changedtime = formatDateTime(starttime);
+      return changedtime;
+      }else{
+        return "";
+      }
+    }
+
+
+function ChangeRealType(enType){
+    var ordertypedic = [];
+    ordertypedic["integrated"] = "科室主任";
+    ordertypedic["eye"] = "眼科";
+    ordertypedic["internal"] = "内科";
+    ordertypedic["surgical"] = "外科";
+    ordertypedic["aidexam"] = "辅助检查";
+    ordertypedic["anorectal"] = "肛肠科";
+    ordertypedic["bloodsugar"] = "血糖化验";
+
+    return String(ordertypedic[String(enType)]);
+}
+
+
+function ChangeRoleType(roleType){
+  roleTypedic = [];
+  roleTypedic["mainDoctor"] = "主检医师";
+  roleTypedic["partDoctor"] = "分检医师";
+
+  return String(roleTypedic[String(roleType)]);
+}
+
+</script>
+<!-- end: Javascript -->
+<div style="text-align:center;">
+<p><a href="http://www.mycodes.net/" target="_blank">Copyright@ lab1810 2018</a></p>
+</div>
+</body>
+</html>
