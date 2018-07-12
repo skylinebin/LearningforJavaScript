@@ -111,6 +111,34 @@
         		$("#showtime").val(homes);
 
         	}
+
+	function commafy(num){
+	  return num && num
+	    .toString()
+	    .replace(/(\d)(?=(\d{3})+\.)/g, function($1, $2){
+	      return $2 + ',';
+	    });
+	}
+
+	console.log(commafy(1200000123123.223))
+
+
+function QuickSort(arr){ 
+    for(var i=0;i<arr.length-1;i++){ 
+        for(var j=i+1;j<arr.length;j++){ 
+            if(arr[i]>arr[j]){/*如果前面的数据比后面的大就交换位置*/
+                var list=arr[i]; 
+                arr[i]=arr[j]; 
+                arr[j]=list; 
+            }  
+        } 
+    }  
+    return arr; 
+} 
+
+console.log(QuickSort([10,10,1,2,4,6,7,89,7,4]))
+
+
         </script>
     </body>
 </html>

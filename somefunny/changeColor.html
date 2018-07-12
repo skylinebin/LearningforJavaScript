@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>WebsiteIndex</title>
+<title>颜色提取</title>
 <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
 
 <!-- author: SkylineBin -->
@@ -65,6 +65,24 @@ input {
 	border-radius: 1px;	
 }
 
+.choosecolorone {
+	height: 450px;
+}
+.choosecolortwo {
+	height: 450px;
+}
+.colorChoose {
+	margin-top: 3em;
+	width: 7em;
+	height: 2em;
+}
+
+.choosecolorbtn {
+	line-height: 2em;
+	margin-left: 1em;
+	/*height: 2em;*/
+}
+
 </style>
 </head>
     <body>
@@ -110,9 +128,12 @@ input {
 
 			<!-- 选颜色，取色 -->
 		<div class="parttwo col-md-12">
-			<div class="choosecolor col-lg-6 col-md-6">
+			<div class="choosecolorone col-lg-6 col-md-6">
+				<input id="choosesystemcolor" type="color" class="colorChoose" onchange="addChangeColor(this.value)">
+				<button class="btn btn-success choosecolorbtn" onclick="showsyscolorchoose()">选择颜色</button>
 			</div>
-			<div class="choosecolor col-lg-6 col-md-6">
+			<div id="choosecolortwo" class="choosecolortwo col-lg-6 col-md-6">
+				<!-- <div class="colorseen" id="showsystemcolor"></div> -->
 			</div>
 
 		</div>
@@ -132,7 +153,21 @@ input {
 			});
         }
 
+        function showsyscolorchoose(){
+        	$("#choosesystemcolor").click();
+        }
 
+        function addChangeColor(thisvalue){
+        	console.log(thisvalue);
+        	$("#choosecolortwo").append('<div class="colorseen choosechild" style="background:'+thisvalue+';">'+thisvalue+'</div>');
+        	if($('.choosechild').length > 5){
+
+        		// var target = document.getElementsByClassName("choosechild")[0];
+        		var target = $('.choosechild')[0];
+        		document.getElementById("choosecolortwo").removeChild( target );
+        	}
+
+        }
 
         $("#color1").val("#33A9d4");
         showcolor(1);
