@@ -1,0 +1,164 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<title>SkylineBin's Index</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap-grid.min.css" rel="stylesheet">
+<style type="text/css">
+</style>
+</head>
+    <body>
+    	<div id="content">
+    		<div id="maintop" class="navbar">
+    			<div  :style="[titlestyle, domaincolor[0]]"  >{{domaintitle[0]}}</div>
+    			<div v-for="item in websites" style="width: 25%;">
+    				<a :style="ahrefstyle" :href="item.weburl" target="_blank">
+	    				<div :style="[websitestyle, domainbackcolor[0]]" :title="item.webname">
+							 {{item.webname}} 
+						</div>
+					</a>
+    			</div>
+
+    			<div :style="[titlestyle, domaincolor[1]]">{{domaintitle[1]}}</div>
+    			<div v-for="item in techwebsites" style="width: 25%;">
+    				<a :style="ahrefstyle" :href="item.weburl" target="_blank">
+	    				<div :style="[websitestyle, domainbackcolor[1]]" :title="item.webname">
+							 {{item.webname}} 
+						</div>
+					</a>
+    			</div>
+    		</div>
+    		<div id="mainconts" class="mainconts">
+    			
+    		</div>
+
+    	</div>
+
+
+	<script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+	GlobalColors = ["#ea0060", "#75d5fb"];
+	data = {
+		mainwebsite: {
+			"domaintitle":["学术领域", "技术指标"],
+			"domaincolor":[{color: GlobalColors[0]},{color: GlobalColors[1]}],
+			"domainbackcolor":[{
+				background: GlobalColors[0],
+				border: "solid 1px "+ String(GlobalColors[0]),
+			},{
+				background: GlobalColors[1],
+				border: "solid 1px " + String(GlobalColors[1]),
+			}],
+			"titlestyle": {
+				fontSize: "20px",
+				fontWeight: "bold",
+				width: "100%",
+				marginBottom: "10px",
+				marginLeft: "8px",
+			},
+			"websitestyle": {
+				fontSize: "16px",
+
+				borderRadius: "2px",
+				marginLeft: "5px",
+				marginBottom: "10px",
+				textAlign: "center",
+				height: "50px",
+				lineHeight: "50px",
+
+			},
+			"ahrefstyle": {
+				color: "#FFF",
+				textDecoration: "none"
+			},
+			"websites":[
+				{
+					"webname": "武汉理工图书馆",
+					"weburl": "http://lib.whut.edu.cn/"
+				},
+				{
+					"webname": "武汉理工图书馆文献数据库",
+					"weburl": "http://lib.whut.edu.cn/node/358.jspx"
+				},
+				{
+					"webname": "谷歌翻译",
+					"weburl": "https://translate.google.cn/"
+				},
+				{
+					"webname": "谷歌学术",
+					"weburl": "http://www.shgfjx.top/"
+				},
+				{
+					"webname": "百度学术",
+					"weburl": "http://xueshu.baidu.com/"
+				},
+				{
+					"webname": "SCI",
+					"weburl": "http://apps.webofknowledge.com/"
+				},
+				{
+					"webname": "Scopus",
+					"weburl": "https://www.scopus.com/"
+				},
+				{
+					"webname": "SCI-Hub",
+					"weburl": "http://tool.yovisun.com/scihub/"
+				},
+
+			],
+			"techwebsites":[
+				{
+					"webname": "程序员导航",
+					"weburl": "http://code.giffox.com/"
+				},
+				{
+					"webname": "Github",
+					"weburl": "https://github.com/"
+				},
+				{
+					"webname": "腾讯云",
+					"weburl": "https://cloud.tencent.com/"
+				},
+				{
+					"webname": "Vuejs",
+					"weburl": "https://cn.vuejs.org/v2/guide/"
+				},
+				{
+					"webname": "Bejson",
+					"weburl": "http://www.bejson.com/"
+				},
+				{
+					"webname": "React中文文档",
+					"weburl": "http://react.css88.com/"
+				},
+
+			]
+
+
+		}
+	}
+
+	let navapp = new Vue({
+		el: '#maintop',
+		data: data.mainwebsite,
+		// websites: []
+	})
+
+	console.log(navapp);
+	console.log(data.mainwebsite);
+	console.log(data.mainwebsite.websites);
+	// navapp.websites = data.mainwebsite.websites;
+
+	</script>
+    </body>
+</html>
+
+
+
+
+
+
+
