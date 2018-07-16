@@ -3,16 +3,42 @@
 <head>
 <title>SkylineBin's Index</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="icon" href="http://osaussnqu.bkt.clouddn.com/logo/SkylineBin.png" type="image/png">
 <link href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap-grid.min.css" rel="stylesheet">
 <style type="text/css">
+* { margin:0; padding:0; }
+body { font:14px/1.8 arial; }
+html, body, .wrap { height:100%; }
+
+
+.contents {
+    height:auto; 
+    min-height:100%; 
+    _height:100%; 
+    /*background:#CCC; */
+    color:#fff; 
+    font-size:18px; 
+}
+
+.footer {
+    position:relative; 
+    /*height:80px; */
+    line-height: 40px; 
+    margin-top:-40px; 
+    background:#333; 
+    color:#fff; 
+    font-size:16px; 
+    text-align:center; 
+
+}
 </style>
 </head>
     <body>
-    	<div id="content">
-    		<div id="maintop" class="navbar">
+    	<div id="content" class="contents">
+    		<div id="maintop" class="navbar" :style="mainmargin">
     			<div  :style="[titlestyle, domaincolor[0]]"  >{{domaintitle[0]}}</div>
-    			<div v-for="item in websites" style="width: 25%;">
+    			<div v-for="item in techwebsites" style="width: 25%;">
     				<a :style="ahrefstyle" :href="item.weburl" target="_blank">
 	    				<div :style="[websitestyle, domainbackcolor[0]]" :title="item.webname">
 							 {{item.webname}} 
@@ -21,37 +47,70 @@
     			</div>
 
     			<div :style="[titlestyle, domaincolor[1]]">{{domaintitle[1]}}</div>
-    			<div v-for="item in techwebsites" style="width: 25%;">
+    			<div v-for="item in AcademiaWebsites" style="width: 25%;">
     				<a :style="ahrefstyle" :href="item.weburl" target="_blank">
 	    				<div :style="[websitestyle, domainbackcolor[1]]" :title="item.webname">
 							 {{item.webname}} 
 						</div>
 					</a>
     			</div>
+
+    			<div :style="[titlestyle, domaincolor[2]]">{{domaintitle[2]}}</div>
+    			<div v-for="item in mywebsites" style="width: 25%;">
+    				<a :style="ahrefstyle" :href="item.weburl" target="_blank">
+	    				<div :style="[websitestyle, domainbackcolor[2]]" :title="item.webname">
+							 {{item.webname}} 
+						</div>
+					</a>
+    			</div>
+
+
+
     		</div>
     		<div id="mainconts" class="mainconts">
     			
     		</div>
 
     	</div>
-
+		<div class="footer">
+    		<div id="copyright" style="width:300px;margin:0 auto; padding:10px 0;height:20px;line-height:20px;color:#939393;">
+    			&copy; 2018 SkylineBin 鄂ICP备18015484号
+    		</div>
+		 	<div style="width:300px;margin:0 auto; padding:10px 0;">
+		 		<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42011102002416" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="http://osaussnqu.bkt.clouddn.com/website/beian.png" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">鄂公网安备 42011102002416号</p></a>
+		 	</div>
+	 	</div>
 
 	<script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 	<script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<script>
-	GlobalColors = ["#ea0060", "#75d5fb"];
+
+	//  GlobalColors 用于全局颜色的控制
+	// mainwebsite 是页面内容的主体
+	// 
+
+	GlobalColors = [ "#75d5fb","#ea0060","#534572"];
 	data = {
 		mainwebsite: {
-			"domaintitle":["学术领域", "技术指标"],
-			"domaincolor":[{color: GlobalColors[0]},{color: GlobalColors[1]}],
+			"mainmargin":{
+				marginTop: "2em",
+				marginLeft: "10%",
+				marginRight: "10%"
+			},
+			"domaintitle":["技术指标","学术领域","SkylineBin"],
+			"domaincolor":[{color: GlobalColors[0]},{color: GlobalColors[1]},{color: GlobalColors[2]}],
 			"domainbackcolor":[{
 				background: GlobalColors[0],
 				border: "solid 1px "+ String(GlobalColors[0]),
 			},{
 				background: GlobalColors[1],
 				border: "solid 1px " + String(GlobalColors[1]),
-			}],
+			},{
+				background: GlobalColors[2],
+				border: "solid 1px " + String(GlobalColors[2]),
+			}
+			],
 			"titlestyle": {
 				fontSize: "20px",
 				fontWeight: "bold",
@@ -74,7 +133,8 @@
 				color: "#FFF",
 				textDecoration: "none"
 			},
-			"websites":[
+			"AcademiaWebsites":[
+			// AcademiaWebsites 学术领域常用网站
 				{
 					"webname": "武汉理工图书馆",
 					"weburl": "http://lib.whut.edu.cn/"
@@ -110,6 +170,7 @@
 
 			],
 			"techwebsites":[
+			// 开发常用网站
 				{
 					"webname": "程序员导航",
 					"weburl": "http://code.giffox.com/"
@@ -123,19 +184,47 @@
 					"weburl": "https://cloud.tencent.com/"
 				},
 				{
-					"webname": "Vuejs",
-					"weburl": "https://cn.vuejs.org/v2/guide/"
-				},
-				{
 					"webname": "Bejson",
 					"weburl": "http://www.bejson.com/"
+				},
+				{
+					"webname": "Vuejs中文官网",
+					"weburl": "https://cn.vuejs.org/v2/guide/"
 				},
 				{
 					"webname": "React中文文档",
 					"weburl": "http://react.css88.com/"
 				},
+				{
+					"webname": "Webpack中文文档",
+					"weburl": "https://webpack.w3cvip.org/"
+				},
+				{
+					"webname": "Tensorflow中文文档",
+					"weburl": "https://tensorflow.juejin.im/"
+				},
 
-			]
+			],
+			"mywebsites":[
+			// 建设网站
+				{
+					"webname": "技术博客",
+					"weburl": "http://skylinebin.com/"
+				},
+				{
+					"webname": "Github主页",
+					"weburl": "https://github.com/skylinebin"
+				},
+				{
+					"webname": "腾讯云服务器主页",
+					"weburl": "https://qcloud.skylinebin.com/"
+				},
+				{
+					"webname": "自建工具合集",
+					"weburl": "http://skylinebin.com/mytools/"
+				},
+
+			]			
 
 
 		}
@@ -150,7 +239,6 @@
 	console.log(navapp);
 	console.log(data.mainwebsite);
 	console.log(data.mainwebsite.websites);
-	// navapp.websites = data.mainwebsite.websites;
 
 	</script>
     </body>
