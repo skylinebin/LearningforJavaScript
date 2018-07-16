@@ -1,0 +1,48 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<title>TodoList-jQuery</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<style type="text/css">
+</style>
+</head>
+    <body>
+	<div>
+		<input id="input" type="text" >
+		<button id="btn">提交</button>
+		<ul id="list">
+		</ul>
+	</div>
+
+	<script src="./jquery.min.js"></script>
+	<script>
+		function Page() {
+
+		}
+
+		$.extend(Page.prototype, {
+			init: function() {
+				this.bindEvents()
+			},
+			bindEvents: function() {
+				var btn = $('#btn');
+				btn.on('click', $.proxy(this.handleBtnClick, this))
+			},
+			handleBtnClick: function() {
+				var inputElem = $("#input");
+				var inputValue = inputElem.val();
+				var ulElem = $("#list");
+				ulElem.append('<li>'+ inputValue + '</li>');
+				inputElem.val('');
+			}
+		})
+
+		var page = new Page();
+		page.init();
+
+	</script>
+    </body>
+</html>
+
+
