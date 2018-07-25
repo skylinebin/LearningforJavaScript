@@ -3,7 +3,7 @@
 <head>
 <title>SkylineBin's Index</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="icon" href="http://osaussnqu.bkt.clouddn.com/logo/SkylineBin.png" type="image/png">
+<link rel="icon" href="./SkylineBin.png" type="image/png">
 <link href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap-grid.min.css" rel="stylesheet">
 <style type="text/css">
@@ -11,6 +11,9 @@
 body { font:14px/1.8 arial; }
 html, body, .wrap { height:100%; }
 
+/*body {
+	background-image: linear-gradient(135deg, #DEFCF9 0%, #C3BEF0 100%);
+}*/
 
 .contents {
     height:auto; 
@@ -32,6 +35,9 @@ html, body, .wrap { height:100%; }
     text-align:center; 
 
 }
+
+.footerimg{height:120px;position:fixed;bottom:100px;right:0px;}
+
 </style>
 </head>
     <body>
@@ -56,7 +62,7 @@ html, body, .wrap { height:100%; }
     			</div>
 
     			<div :style="[titlestyle, domaincolor[2]]">{{domaintitle[2]}}</div>
-    			<div v-for="item in mywebsites" style="width: 25%;">
+    			<div v-for="item in relaxwebsites" style="width: 25%;">
     				<a :style="ahrefstyle" :href="item.weburl" target="_blank">
 	    				<div :style="[websitestyle, domainbackcolor[2]]" :title="item.webname">
 							 {{item.webname}} 
@@ -64,6 +70,19 @@ html, body, .wrap { height:100%; }
 					</a>
     			</div>
 
+    			<div :style="[titlestyle, domaincolor[3]]">{{domaintitle[3]}}</div>
+    			<div v-for="item in mywebsites" style="width: 25%;">
+    				<a :style="ahrefstyle" :href="item.weburl" target="_blank">
+	    				<div :style="[websitestyle, domainbackcolor[3]]" :title="item.webname">
+							 {{item.webname}} 
+						</div>
+					</a>
+    			</div>
+
+
+		    <div class="footerimg">
+		        <img class="showgirl" @click="handleClick" src="./digger.gif" alt="傻乎乎的女孩" :title="girltalk">
+		    </div>
 
 
     		</div>
@@ -72,12 +91,18 @@ html, body, .wrap { height:100%; }
     		</div>
 
     	</div>
+
+	<audio id="backgroundmusic" hidden="hidden"  autoplay="autoplay" controls="controls"loop="loop" preload="auto" >
+        <source src="./RainyMood.mp3"></source>
+            Your browser version is too low and does not support audio tag autoplay.
+    </audio>
+
 		<div class="footer">
     		<div id="copyright" style="width:300px;margin:0 auto; padding:10px 0;height:20px;line-height:20px;color:#939393;">
     			&copy; 2018 SkylineBin 鄂ICP备18015484号
     		</div>
 		 	<div style="width:300px;margin:0 auto; padding:10px 0;">
-		 		<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42011102002416" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="http://osaussnqu.bkt.clouddn.com/website/beian.png" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">鄂公网安备 42011102002416号</p></a>
+		 		<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42011102002416" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="./beian.png" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">鄂公网安备 42011102002416号</p></a>
 		 	</div>
 	 	</div>
 
@@ -90,16 +115,18 @@ html, body, .wrap { height:100%; }
 	// mainwebsite 是页面内容的主体
 	// 
 
-	GlobalColors = [ "#75d5fb","#ea0060","#534572"];
+	GlobalColors = [ "#22a2c3","#ea0060","#1ba784","#534572"];
 	data = {
 		mainwebsite: {
+			rain: true,
+            girltalk: "戳我一下，天就晴了...",
 			"mainmargin":{
 				marginTop: "2em",
 				marginLeft: "10%",
 				marginRight: "10%"
 			},
-			"domaintitle":["技术指标","学术领域","SkylineBin"],
-			"domaincolor":[{color: GlobalColors[0]},{color: GlobalColors[1]},{color: GlobalColors[2]}],
+			"domaintitle":["技术指标","学术领域","Relax","SkylineBin"],
+			"domaincolor":[{color: GlobalColors[0]},{color: GlobalColors[1]},{color: GlobalColors[2]},{color: GlobalColors[3]}],
 			"domainbackcolor":[{
 				background: GlobalColors[0],
 				border: "solid 1px "+ String(GlobalColors[0]),
@@ -109,6 +136,9 @@ html, body, .wrap { height:100%; }
 			},{
 				background: GlobalColors[2],
 				border: "solid 1px " + String(GlobalColors[2]),
+			},{
+				background: GlobalColors[3],
+				border: "solid 1px " + String(GlobalColors[3]),
 			}
 			],
 			"titlestyle": {
@@ -203,13 +233,65 @@ html, body, .wrap { height:100%; }
 					"webname": "Tensorflow中文文档",
 					"weburl": "https://tensorflow.juejin.im/"
 				},
+				{
+					"webname": "Node.js中文文档",
+					"weburl": "http://nodejs.cn/api/"
+				},
+				{
+					"webname": "七牛云",
+					"weburl": "https://sso.qiniu.com/"
+				},
+				{
+					"webname": "开发者实验室",
+					"weburl": "https://cloud.tencent.com/developer/labs/workbench"
+				},
+				{
+					"webname": "算法可视化",
+					"weburl": "https://visualgo.net/en"
+				},
 
+
+			],
+			"relaxwebsites":[
+			// 休息一下
+				{
+					"webname": "百度云盘",
+					"weburl": "https://pan.baidu.com/"
+				},
+				{
+					"webname": "古籍书格",
+					"weburl": "https://shuge.org/"
+				},
+				{
+					"webname": "了解博弈论",
+					"weburl": "https://www.sekai.co/trust/"
+				},
+				{
+					"webname": "更专业的雨",
+					"weburl": "http://www.rainymood.com/"
+				},
+				{
+					"webname": "找不到东西",
+					"weburl": "http://magnet.chongbuluo.com/"
+				},
+				{
+					"webname": "mayday",
+					"weburl": "https://www.xiami.com/play?ids=/song/playlist/id/2100337262/type/1#loaded"
+				},
+				{
+					"webname": "奇虎75Team",
+					"weburl": "https://75team.com/post/list"
+				},
+				{
+					"webname": "给点儿颜色",
+					"weburl": "http://zhongguose.com/"
+				},
 			],
 			"mywebsites":[
 			// 建设网站
 				{
 					"webname": "技术博客",
-					"weburl": "http://skylinebin.com/"
+					"weburl": "https://skylinebin.com/"
 				},
 				{
 					"webname": "Github主页",
@@ -220,7 +302,7 @@ html, body, .wrap { height:100%; }
 					"weburl": "https://qcloud.skylinebin.com/"
 				},
 				{
-					"webname": "自建工具合集",
+					"webname": "自建工具增加",
 					"weburl": "http://skylinebin.com/mytools/"
 				},
 
@@ -233,12 +315,25 @@ html, body, .wrap { height:100%; }
 	let navapp = new Vue({
 		el: '#maintop',
 		data: data.mainwebsite,
+		methods: {
+			handleClick: function() {
+                this.rain = !this.rain
+                if (this.rain) {
+                    this.girltalk = "戳我一下，天就晴了...";
+                    document.getElementById("backgroundmusic").play();
+                    
+                }else{
+                    this.girltalk = "别捏我了，我一哭就会下雨..."
+                    document.getElementById("backgroundmusic").pause();
+                }
+			}
+		}
 		// websites: []
 	})
 
-	console.log(navapp);
-	console.log(data.mainwebsite);
-	console.log(data.mainwebsite.websites);
+	// console.log(navapp);
+	// console.log(data.mainwebsite);
+	// console.log(data.mainwebsite.websites);
 
 	</script>
     </body>
