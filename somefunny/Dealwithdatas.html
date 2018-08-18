@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Dealwith</title>
+</head>
+<body>
+	
+<script type="text/javascript">
+	var data = '{"payload": "[{\"txId\":\"6e456b25fab48b53606ca0216fcff999e246937c3acad2c264c267f89257b14c\",\"value\":{\"commentId\":\"db5e2ddcb9a12781559c713dd1bfadb4\",\"time\":\"Sat Aug 18 10:22:12 GMT+08:00 2018\",\"orderId\":\"867\",\"buyer\":\"glh\"}}]",    "success": true }';
+	console.log(data);
+
+	var realdata = '{"payload": "[{"txId":"6e456b25fab48b53606ca0216fcff999e246937c3acad2c264c267f89257b14c","value":{"commentId":"db5e2ddcb9a12781559c713dd1bfadb4","time":"Sat Aug 18 10:22:12 GMT+08:00 2018","orderId":"867","buyer":"glh"}}]",    "success": true }';
+
+	var otherreg = new RegExp('(?<=\"txId\":\")\w*(?=\\*\")');
+	var backdata = otherreg.exec(realdata);
+	console.log(backdata);
+// (?<=\"txId\":\")\w*(?=\\*\")
+
+
+// (?<=\\\"txId\\":\\")\w*(?=\\*\")
+	var regone = new RegExp('\\"\\[',"g");
+	var dataone = data.replace(regone,'[');
+	var regtwo = new RegExp('\\]\\"',"g");
+	var datatwo = dataone.replace(regtwo,']');
+
+	console.log(datatwo);
+
+	var afterdealed = JSON.parse(datatwo);
+	console.log('txId:',afterdealed.payload[0].txId);
+	console.log('commentId:',afterdealed.payload[0].value.commentId);
+	console.log('time:',afterdealed.payload[0].value.time);
+	
+
+	// var dealed = JSON.stringify(data);
+	// console.log(dealed);
+	// var reg = new RegExp('\"',"g");
+	// var cone = dealed.replace(reg,'')
+
+	// var regtwo = new RegExp('\\\\',"g");
+	// var ctwo = cone.replace(regtwo,'"')
+
+</script>
+</body>
+</html>
