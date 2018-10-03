@@ -1,0 +1,227 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+
+<head>
+    <title>SkylineBin's Index</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <link rel="icon" href="https://store.skylinebin.com/logo/SkylineBin.png" type="image/png">
+    <!--<link href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">-->
+    <!--<link href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap-grid.min.css" rel="stylesheet">-->
+    <link href="https://store.skylinebin.com/cdn/bootstrap.min.css" rel="stylesheet">
+    <link href="https://store.skylinebin.com/cdn/bootstrap-grid.min.css" rel="stylesheet">
+
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font: 14px/1.8 arial;
+        }
+
+        html,
+        body,
+        .wrap {
+            height: 100%;
+        }
+
+        body,
+        body .contents {
+            background-image: linear-gradient(135deg, #DEFCF9 0%, #C3BEF0 100%);
+        }
+
+        .headtitle {
+            padding-top: 2rem;
+            text-align: center;
+            color: black;
+        }
+
+        .contents {
+            height: auto;
+            min-height: 150%;
+            _height: 150%;
+            color: #fff;
+            font-size: 18px;
+        }
+
+        .footer {
+            position: relative;
+            line-height: 40px;
+            margin-top: -40px;
+            background: #333;
+            color: #fff;
+            font-size: 16px;
+            text-align: center;
+
+        }
+
+        .footerimg {
+            display: none;
+            height: 120px;
+            position: fixed;
+            flex-flow: hidden;
+            bottom: 100px;
+            right: 0px;
+        }
+
+        .titlestyle {
+            font-size: 20px;
+            font-weight: bold;
+            width: 100%;
+            margin-bottom: 10px;
+            margin-left: 8px;
+        }
+
+        .websitestyle {
+            font-size: 16px;
+            border-radius: 2px;
+            margin-left: 5px;
+            margin-bottom: 10px;
+            text-align: center;
+            height: 50px;
+            line-height: 50px;
+        }
+
+        .ahrefstyle {
+            color: #FFF;
+            text-decoration: none;
+        }
+
+        .ahrefstyle:hover {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .itemcontents {
+            width: 25%;
+            float: left;
+        }
+
+        .clearboth {
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content" class="contents">
+        <h2 class="headtitle">SkylineBin's Index Page</h2>
+        <div id="maintop" class="navbar" :style="mainmargin">
+
+            <div v-for="item in sites" :key="item._id" style="width: 100%;">
+                <div class="titlestyle" :style="{color: item.color}">{{item.catename}}</div>
+                <div v-for="(sitem,sindex) in item.webname" class="itemcontents">
+                    <a class="ahrefstyle" :href="item.weburl[sindex]" target="_blank">
+                        <div class="websitestyle" :style="{background: item.color, border: 'solid 1px'+ item.color}"
+                            :title="item.webname[sindex]">
+                            {{item.webname[sindex]}}
+                        </div>
+                    </a>
+                </div>
+                <div class="clearboth"></div>
+
+            </div>
+
+        </div>
+        <div id="mainconts" class="mainconts">
+
+        </div>
+
+    </div>
+
+    <audio id="backgroundmusic" hidden="hidden" autoplay="autoplay" controls="controls" loop="loop" preload="auto">
+        <source src="./RainyMood.mp3" /> Your browser version is too low and does not support audio tag autoplay.
+    </audio>
+
+    <div class="footer">
+        <div id="copyright" style="width:300px;margin:0 auto; padding:10px 0;height:20px;line-height:20px;color:#939393;">
+            &copy; 2018 SkylineBin 鄂ICP备18015484号
+        </div>
+        <div style="width:300px;margin:0 auto; padding:10px 0;">
+            <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42011102002416" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;">
+                <img src="https://store.skylinebin.com/website/beian.png" style="float:left;" />
+                <p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">鄂公网安备
+                    42011102002416号</p>
+            </a>
+        </div>
+    </div>
+
+    <!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
+    <script src="https://store.skylinebin.com/cdn/vue.js"></script>
+    <script src="https://store.skylinebin.com/js/axios.min.js"></script>
+    <script src="https://store.skylinebin.com/forwebsite/js/myconsole.js"></script>
+    <script type="text/javascript" src="https://tajs.qq.com/stats?sId=65981492" charset="UTF-8"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124250334-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-124250334-2');
+    </script>
+
+    <script>
+        let navapp = new Vue({
+            el: '#maintop',
+            data: {
+                "sites": new Array({}),
+                "mainmargin": {
+                    marginTop: "2em",
+                    marginLeft: "10%",
+                    marginRight: "10%"
+                },
+            },
+            methods: {
+                handleClick: function () {
+                    this.rain = !this.rain
+                    if (this.rain) {
+                        this.girltalk = "戳我一下，天就晴了...";
+                        document.getElementById("backgroundmusic").play();
+
+                    } else {
+                        this.girltalk = "别捏我了，我一哭就会下雨..."
+                        document.getElementById("backgroundmusic").pause();
+                    }
+                },
+                getallsites: function () {
+                    axios.get('/getsites').then(function (response) {
+                        console.log(response);
+                        var sitedata = response.data;
+                        console.log(response.data);
+                        var siteresult = sitedata.result;
+                        this.sites = siteresult;
+
+                        console.log(siteresult);
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                }
+            },
+            mounted: function () {
+                // this.getallsites();
+
+            },
+        });
+
+        function getallsites() {
+            axios.get('/getsites').then(function (response) {
+                var sitedata = response.data;
+                var siteresult = sitedata.result;
+                navapp.sites = sitedata.result;
+                // console.log(siteresult);
+
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+        getallsites();
+    </script>
+</body>
+
+</html>
