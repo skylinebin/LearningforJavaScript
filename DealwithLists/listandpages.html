@@ -324,9 +324,9 @@
                         console.log(objmessage);
                     }
             },error:function(xmle){
-                       $("#mymodal-sm-newprocess").modal("hide");
-                        alertMsg("操作失败，请稍后再试!");
-                      }
+                      $("#mymodal-sm-newprocess").modal("hide");
+                      alertMsg("操作失败，请稍后再试!");
+            }
               });
 
     }
@@ -415,8 +415,8 @@ function edituser(thisuserida,thisuserNamea,thisuserpassworda,thisuserrealNamea)
                     //     console.log(objmessage);
                     // }
             },error:function(xmle){
-                       $("#mymodal-sm-newprocess").modal("hide");
-                        alertMsg("操作失败，请稍后再试!");
+                      $("#mymodal-sm-newprocess").modal("hide");
+                      alertMsg("操作失败，请稍后再试!");
                       }
               });    
 
@@ -458,8 +458,8 @@ function edituser(thisuserida,thisuserNamea,thisuserpassworda,thisuserrealNamea)
 
 
             },error:function(xmle){
-                       $("#mymodal-sm-newprocess").modal("hide");
-                        alertMsg("操作失败，请稍后再试!");
+                      $("#mymodal-sm-newprocess").modal("hide");
+                      alertMsg("操作失败，请稍后再试!");
                       }
               });    
 
@@ -513,8 +513,8 @@ function realdouploadApartment(thisorderid){
                         console.log(objmessage);
                     }
             },error:function(xmle){
-                       $("#mymodal-sm-newprocess").modal("hide");
-                        alertMsg("操作失败，请稍后再试!");
+                      $("#mymodal-sm-newprocess").modal("hide");
+                      alertMsg("操作失败，请稍后再试!");
                       }
               }); 
 
@@ -575,38 +575,36 @@ function listusual(tourl, thisdraw, thisstart, thislength, thissearchvalue,thiso
     var choosetype = String(thistype);
     // 用来分辨传入的是哪种类型的请求,0为首页,1为跳转,2为上一页,3为下一页
   $.ajax({
-           url: String(tourl),
-           type:"GET",
-           data:{
-           "draw": String(thisdraw),
-           "start": String(thisstart),
-           "length":String(thislength),
-           "search[value]":String(thissearchvalue),
-           "order[0][column]":String(thisordercol),
-           "order[0][dir]":String(thisorderdir),
-           },
-            success:function(objects){
-            var objsuccess = objects.success;
-            var objmessage = objects.message;
-            if(objsuccess){
-            var totalnum = objects.recordsFiltered;
-            $("#totalnum").html(totalnum);
-            var totalpage= Math.ceil(totalnum/8);
-            allpages = totalpage;
-            $("#totalpage").html(totalpage);
-            $("#totalpages").html(totalpage);
-            var currentpage = Number(parseInt("1"));
-            if(choosetype == "0"){
-                currentpage = Number(parseInt("1"));
-            }else if(choosetype == "1"){
-                currentpage = Number(parseInt("1"));
-            }else if(choosetype == "2"){
-                currentpage = Number($("#currentpage").html())-Number(1);
-            }else if(choosetype == "3"){
-                currentpage = Number($("#currentpage").html())+Number(1);
-            }
-            
-
+          url: String(tourl),
+          type:"GET",
+          data:{
+          "draw": String(thisdraw),
+          "start": String(thisstart),
+          "length":String(thislength),
+          "search[value]":String(thissearchvalue),
+          "order[0][column]":String(thisordercol),
+          "order[0][dir]":String(thisorderdir),
+        },
+          success:function(objects){
+          var objsuccess = objects.success;
+          var objmessage = objects.message;
+          if(objsuccess){
+          var totalnum = objects.recordsFiltered;
+          $("#totalnum").html(totalnum);
+          var totalpage= Math.ceil(totalnum/8);
+          allpages = totalpage;
+          $("#totalpage").html(totalpage);
+          $("#totalpages").html(totalpage);
+          var currentpage = Number(parseInt("1"));
+          if(choosetype == "0"){
+              currentpage = Number(parseInt("1"));
+          }else if(choosetype == "1"){
+              currentpage = Number(parseInt("1"));
+          }else if(choosetype == "2"){
+              currentpage = Number($("#currentpage").html())-Number(1);
+          }else if(choosetype == "3"){
+              currentpage = Number($("#currentpage").html())+Number(1);
+          }
             $("#currentpage").html(currentpage);
             $("#choosepage").val(currentpage);
             console.log(currentpage);
@@ -638,32 +636,32 @@ function listusual(tourl, thisdraw, thisstart, thislength, thissearchvalue,thiso
                   var tr = $("#dele");
                   var obj = objects.result;
               $.each(obj, function(index,item){
-                     //克隆tr，每次遍历都可以产生新的tr
-                     var clonedTr = tr.clone();
-                     var _index = index;
-                     clonedTr.removeClass("del");
-                     clonedTr.addClass("data");
-             //循环遍历cloneTr的每一个td元素，并赋值
+                    //克隆tr，每次遍历都可以产生新的tr
+                    var clonedTr = tr.clone();
+                    var _index = index;
+                    clonedTr.removeClass("del");
+                    clonedTr.addClass("data");
+                    //循环遍历cloneTr的每一个td元素，并赋值
 
-                     clonedTr.children("td").each(function(inner_index){
-                         //根据索引为每一个td赋值
-                         switch(inner_index){
-                            case(0):
-                           $(this).html(item.id);
-                               break;
-                          case(1):
-                            $(this).html(item.userName);
-                             break;
-                           case(2):
-                            $(this).html(item.passWord);
-                             break;
-                           case(3):
-                           $(this).html(item.realName);
-                               break;
-                            case(4):
-                            $(this).html('<button type="button" data-toggle="modal" data-target="#edituserModal" class="btn btn-xs btn-success" onclick=edituser("'+String(item.id)+'","'+item.userName+'","'+item.passWord+'","'+item.realName+'") > <span title="修改用户" class="glyphicon glyphicon-pencil"></span></button>');
-                                break;
-                   }//end switch 
+                    clonedTr.children("td").each(function(inner_index){
+                        //根据索引为每一个td赋值
+                        switch(inner_index){
+                          case(0):
+                          $(this).html(item.id);
+                              break;
+                        case(1):
+                          $(this).html(item.userName);
+                            break;
+                          case(2):
+                          $(this).html(item.passWord);
+                            break;
+                          case(3):
+                          $(this).html(item.realName);
+                              break;
+                          case(4):
+                          $(this).html('<button type="button" data-toggle="modal" data-target="#edituserModal" class="btn btn-xs btn-success" onclick=edituser("'+String(item.id)+'","'+item.userName+'","'+item.passWord+'","'+item.realName+'") > <span title="修改用户" class="glyphicon glyphicon-pencil"></span></button>');
+                              break;
+                  }//end switch 
                             });//end children.each
                       clonedTr.insertBefore(tr);
                 });//end $each
@@ -682,22 +680,6 @@ function listusual(tourl, thisdraw, thisstart, thislength, thissearchvalue,thiso
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function jumppage(){
           var topage = $("#choosepage").val();
           // var totalpage = $("#totalpage").val();
@@ -707,20 +689,20 @@ function jumppage(){
           topage = parseInt(topage);
           console.log(topage+'and'+parseInt(totalpage));
           if(topage>0 && topage <= parseInt(totalpage)){
-           clear();
+          clear();
         //    var search= $("#filtertxt").val();
         //    console.log(search); "start":(topage-1)*8,
         $.ajax({
-           url:"findUserInfoForDatatables",
-           type:"GET",
-           data:{
-           "draw":1,
-           "start":(topage-1)*8,
-           "length":8,
-           "search[value]":"",
-           "order[0][column]":"0",
-           "order[0][dir]":"asc",
-           },
+            url:"findUserInfoForDatatables",
+            type:"GET",
+            data:{
+            "draw":1,
+            "start":(topage-1)*8,
+            "length":8,
+            "search[value]":"",
+            "order[0][column]":"0",
+            "order[0][dir]":"asc",
+            },
             success:function(objects){
             var objsuccess = objects.success;
             var objmessage = objects.message;
@@ -763,28 +745,28 @@ function jumppage(){
                   var tr = $("#dele");
                   var obj = objects.result;
               $.each(obj, function(index,item){
-                     //克隆tr，每次遍历都可以产生新的tr
-                     var clonedTr = tr.clone();
-                     var _index = index;
-                     clonedTr.removeClass("del");
-                     clonedTr.addClass("data");
-             //循环遍历cloneTr的每一个td元素，并赋值
+                    //克隆tr，每次遍历都可以产生新的tr
+                    var clonedTr = tr.clone();
+                    var _index = index;
+                    clonedTr.removeClass("del");
+                    clonedTr.addClass("data");
+            //循环遍历cloneTr的每一个td元素，并赋值
 
-                     clonedTr.children("td").each(function(inner_index){
-                         //根据索引为每一个td赋值
-                         switch(inner_index){
-                            case(0):
-                           $(this).html(item.id);
-                               break;
-                          case(1):
-                            $(this).html(item.userName);
-                             break;
-                           case(2):
-                            $(this).html(item.passWord);
-                             break;
-                           case(3):
-                           $(this).html(item.realName);
-                               break;
+                    clonedTr.children("td").each(function(inner_index){
+                        //根据索引为每一个td赋值
+                        switch(inner_index){
+                          case(0):
+                          $(this).html(item.id);
+                              break;
+                        case(1):
+                          $(this).html(item.userName);
+                            break;
+                          case(2):
+                          $(this).html(item.passWord);
+                            break;
+                          case(3):
+                          $(this).html(item.realName);
+                              break;
                           //  case(4):
                           //      $(this).html(item.age);
                           //      break;
@@ -800,7 +782,7 @@ function jumppage(){
                             case(4):
                             $(this).html('<button type="button" data-toggle="modal" data-target="#edituserModal" class="btn btn-xs btn-success" onclick=edituser("'+String(item.id)+'","'+item.userName+'","'+item.passWord+'","'+item.realName+'") > <span title="修改用户" class="glyphicon glyphicon-pencil"></span></button>');
                                 break;
-                   }//end switch 
+                  }//end switch 
                             });//end children.each
                       clonedTr.insertBefore(tr);
                 });//end $each
@@ -821,20 +803,20 @@ function jumppage(){
 } //end jumppage
 
     function fornextpage(){
-           clear();
+          clear();
         //    var search= $("#filtertxt").val();
         //    console.log(search);
         $.ajax({
-           url:"findUserInfoForDatatables",
-           type:"GET",
-           data:{
-           "draw":1,
-           "start":Number($("#currentpage").html())*8,
-           "length":8,
-           "search[value]":"",
-           "order[0][column]":"0",
-           "order[0][dir]":"asc",
-           },
+            url:"findUserInfoForDatatables",
+            type:"GET",
+            data:{
+            "draw":1,
+            "start":Number($("#currentpage").html())*8,
+            "length":8,
+            "search[value]":"",
+            "order[0][column]":"0",
+            "order[0][dir]":"asc",
+            },
             success:function(objects){
               var objsuccess = objects.success;
               var objmessage = objects.message;
@@ -861,7 +843,7 @@ function jumppage(){
               	$("#beforepage").addClass("next");
               	$("#beforepage").unbind('click');
                 }
-                 if (currentpage<totalpage)
+                if (currentpage<totalpage)
                   {
               	$("#nextpage").removeClass("next");
               	$("#nextpage").addClass("fore");
@@ -876,29 +858,29 @@ function jumppage(){
 
                 }
               var tr = $("#dele");
-             var obj = objects.result;
-             $.each(obj, function(index,item){
-                    //克隆tr，每次遍历都可以产生新的tr
-             var clonedTr = tr.clone();
-             var _index = index;
-           clonedTr.removeClass("del");
-           clonedTr.addClass("data");
-             //循环遍历cloneTr的每一个td元素，并赋值
-             clonedTr.children("td").each(function(inner_index){
+            var obj = objects.result;
+            $.each(obj, function(index,item){
+                  //克隆tr，每次遍历都可以产生新的tr
+            var clonedTr = tr.clone();
+            var _index = index;
+            clonedTr.removeClass("del");
+            clonedTr.addClass("data");
+            //循环遍历cloneTr的每一个td元素，并赋值
+            clonedTr.children("td").each(function(inner_index){
                             //根据索引为每一个td赋值
-                            switch(inner_index){
+                        switch(inner_index){
                             case(0):
-                           $(this).html(item.id);
-                               break;
-                          case(1):
-                            $(this).html(item.userName);
-                             break;
-                           case(2):
-                            $(this).html(item.passWord);
-                             break;
-                           case(3):
-                           $(this).html(item.realName);
-                               break;
+                              $(this).html(item.id);
+                              break;
+                            case(1):
+                              $(this).html(item.userName);
+                              break;
+                            case(2):
+                              $(this).html(item.passWord);
+                              break;
+                            case(3):
+                            $(this).html(item.realName);
+                                break;
                           //  case(4):
                           //      $(this).html(item.age);
                           //      break;
@@ -914,9 +896,9 @@ function jumppage(){
                             case(4):
                             $(this).html('<button type="button" data-toggle="modal" data-target="#edituserModal" class="btn btn-xs btn-success" onclick=edituser("'+String(item.id)+'","'+item.userName+'","'+item.passWord+'","'+item.realName+'") > <span title="修改用户" class="glyphicon glyphicon-pencil"></span></button>');
                                 break;
-                   }//end switch 
+                  }//end switch 
                   });//end children.each
-                 clonedTr.insertBefore(tr);
+                clonedTr.insertBefore(tr);
                 });//end $each
                 $(".del").hide();
                 $("#test1").show();
@@ -924,30 +906,30 @@ function jumppage(){
           alertMsg(objmessage);
           $("#test1").show();
     }
-       //end success
-   },
-   error:function() {
+//end success
+      },
+      error:function() {
       alertMsg("操作失败，请与管理人员联系!");
-   }
-         })
+    }
+          })
         }
 
 
- function forbeforepage(){
-           clear();
+function forbeforepage(){
+            clear();
         //    var search= $("#filtertxt").val();
         //    console.log(search); "start": (Number($("#currentpage").html())-Number(2))*8,
         $.ajax({
-           url:"findUserInfoForDatatables",
-           type:"GET",
-           data:{
-           "draw":1,
-           "start": (Number($("#currentpage").html())-Number(2))*8,
-           "length":8,
-           "search[value]":"",
-           "order[0][column]":"0",
-           "order[0][dir]":"asc",
-           },
+            url:"findUserInfoForDatatables",
+            type:"GET",
+            data:{
+            "draw":1,
+            "start": (Number($("#currentpage").html())-Number(2))*8,
+            "length":8,
+            "search[value]":"",
+            "order[0][column]":"0",
+            "order[0][dir]":"asc",
+            },
             success:function(objects){
             var objsuccess = objects.success;
             var objmessage = objects.message;
@@ -964,7 +946,7 @@ function jumppage(){
                 var obj = objects.result;
                 // console.log(currentpage) ;
                 //  console.log(totalpage) ;
-           if(currentpage>1)
+          if(currentpage>1)
             {
               $("#beforepage").removeClass("next");
               $("#beforepage").addClass("fore");
@@ -988,29 +970,29 @@ function jumppage(){
               $("#nextpage").addClass("next");
               $("#nextpage").unbind('click');
           }
-       $.each(obj, function(index,item){
+        $.each(obj, function(index,item){
                           //克隆tr，每次遍历都可以产生新的tr
-               var clonedTr = tr.clone();
-               var _index = index;
-             clonedTr.removeClass("del");
-             clonedTr.addClass("data");
+                var clonedTr = tr.clone();
+                var _index = index;
+              clonedTr.removeClass("del");
+              clonedTr.addClass("data");
 
-               //循环遍历cloneTr的每一个td元素，并赋值
-               clonedTr.children("td").each(function(inner_index){
+                //循环遍历cloneTr的每一个td元素，并赋值
+                clonedTr.children("td").each(function(inner_index){
 
-                     switch(inner_index){
+                      switch(inner_index){
                             case(0):
-                           $(this).html(item.id);
-                               break;
+                            $(this).html(item.id);
+                                break;
                           case(1):
                             $(this).html(item.userName);
-                             break;
-                           case(2):
+                              break;
+                            case(2):
                             $(this).html(item.passWord);
-                             break;
-                           case(3):
-                           $(this).html(item.realName);
-                               break;
+                              break;
+                            case(3):
+                            $(this).html(item.realName);
+                                break;
                           //  case(4):
                           //      $(this).html(item.age);
                           //      break;
@@ -1026,10 +1008,10 @@ function jumppage(){
                             case(4):
                             $(this).html('<button type="button" data-toggle="modal" data-target="#edituserModal" class="btn btn-xs btn-success" onclick=edituser("'+String(item.id)+'","'+item.userName+'","'+item.passWord+'","'+item.realName+'") > <span title="修改用户" class="glyphicon glyphicon-pencil"></span></button>');
                                 break;
-                   }//end switch 
-              });//end children.each
+                    }//end switch 
+                });//end children.each
 
-             clonedTr.insertBefore(tr);
+              clonedTr.insertBefore(tr);
             });//end $each
             $(".del").hide();
             $("#test1").show();
@@ -1037,12 +1019,12 @@ function jumppage(){
           alertMsg(objmessage);
           $("#test1").show();
     }
-       //end success
-   },error:function(){
-       alertMsg("操作失败，请与管理人员联系!");
-   }
-   })
- }
+        //end success
+    },error:function(){
+        alertMsg("操作失败，请与管理人员联系!");
+    }
+    })
+  }
 
 
 function  clear(){

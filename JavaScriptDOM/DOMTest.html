@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document Object Module</title>
+</head>
+<body>
+	<h1>What to buy</h1>
+	<p id="purchase" title="a gentle reminder">Don't forget...</p>
+	<ul id="purchases">
+		<li>A tin of beans</li>
+		<li class="sale">Cheese</li>
+		<li class="sale important">Milk</li>
+	</ul>
+	<p>This is only a P element.</p>
+	<script>
+		// alert(typeof document.getElementsByTagName("li"));
+		let items = document.getElementsByTagName("li");
+		// let items = document.getElementsByClassName("sale");
+		for (let i = 0; i < items.length; i++) {
+			console.log(typeof items[i]);
+		}
+
+		// 重写 getElementsByClassName 方法
+		// 仅适用于 单个 类名 的节点搜索
+		getElementsByClassName = (node, classname) => {
+			if (node.getElementsByClassName) {
+				return node.getElementsByClassName(classname);
+			} else {
+				let results = new Array();
+				let elements = node.getElementsByTagName("*");
+				for (let i =  0; i < elements.length; i++) {
+					if(elements[i].className.indexOf(classname) != -1) {
+						results[results.length] = elements[i];
+					}
+				}
+				return results;
+			}
+		}
+
+		// let shopping = document.getElementById("purchases");
+		// let sales = getElementsByClassName(shopping, "sale");
+		// alert(typeof sales);
+
+		// let paras = document.getElementsByTagName("p");
+		// for (let i = 0; i < paras.length; i++) {
+		// 	let textTitle = paras[i].getAttribute("title");
+		// 	if (textTitle) {
+		// 		alert(textTitle);
+		// 	}
+		// }
+
+		let shopping = document.getElementById("purchase");
+		alert(shopping.getAttribute("title"))
+		shopping.setAttribute("title", "a list of goods");
+		alert(shopping.getAttribute("title"))
+
+	</script>
+</body>
+</html>
