@@ -48,3 +48,10 @@ img {
     border-radius: 2px;
     border: 1px solid #d8e3e7;
 }
+#imageGallery {
+    list-style: none;
+}
+
+#imageGallery li {
+    display: inline;
+}

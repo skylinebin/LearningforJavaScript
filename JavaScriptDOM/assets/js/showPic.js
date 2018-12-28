@@ -12,12 +12,20 @@
  */
 
 showPic = (whichpic) => {
+    if (!document.getElementById("placeholder")) return false;
     let sourceDom = whichpic.getAttribute("href");
     let placeholder = document.getElementById("placeholder");
+    if (placeholder.nodeName != "IMG") return false;
     placeholder.setAttribute("src", sourceDom);
-    let text = whichpic.getAttribute("title");
-    let description = document.getElementById("description");
-    description.firstChild.nodeValue = text;
+    // placeholder.src = sourceDom; // 换成 HTML-DOM 的写法
+    if (document.getElementById("description")) {
+        let text = whichpic.getAttribute("title") ? whichpic.getAttribute("title") : "";
+        let description = document.getElementById("description");
+        if (description.firstChild.nodeType == 3) {
+            description.firstChild.nodeValue = text;
+        }
+    }
+    return true;
 }
 
 countBodyChildren = () => {
@@ -37,7 +45,7 @@ prepareLinks = () => {
     let links = document.getElementsByTagName("a");
     for (let i = 0; i < links.length; i++) {
         if (links[i].getAttribute("class") == "pop-input") {
-            links[i].onclick = () => {
+            links[i].onclick = function () {
                 popUp(this.getAttribute("href"));
                 return false;
             }
@@ -46,4 +54,35 @@ prepareLinks = () => {
     }
 }
 
-window.onload = prepareLinks;
+// window.onload = prepareLinks;
+
+// 处理链接图片的事件监听
+prepareGallery = () => {
+    if (!document.getElementsByClassName) return false;
+    if (!document.getElementById) return false;
+    if (!document.getElementById("imageGallery")) return false;
+    let gallery = document.getElementById("imageGallery");
+    let imageLinks = gallery.getElementsByTagName("a");
+    for (let i = 0; i < imageLinks.length; i++) {
+        imageLinks[i].onclick = function () {
+            return showPic(this) ? false : true;
+        }
+        // imageLinks[i].onkeypress = imageLinks[i].onclick;
+    }
+}
+
+
+addLoadEvent = (func) => {
+    let oldLoad = window.onload;
+    if (typeof window.onload != 'function') {
+        window.onload = func;
+    } else {
+        window.onload = function () {
+            oldLoad();
+            func();
+        }
+    }
+}
+
+addLoadEvent(prepareGallery);
+addLoadEvent(prepareLinks);
