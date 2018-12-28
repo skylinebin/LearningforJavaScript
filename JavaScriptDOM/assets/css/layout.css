@@ -3,6 +3,7 @@ body {
     color: #333;
     background-color: #d8e3e7;
     margin: 1em 10%;
+    font-size: 16px;
 }
 
 h1 {
@@ -35,4 +36,15 @@ img {
 
 #description {
     text-align: center;
+}
+
+.pop-input {
+    width: 10em;
+    height: 5em;
+    line-height: 5em;
+    font-size: 14px;
+    background-color: #1ba784;
+    color: #fff;
+    border-radius: 2px;
+    border: 1px solid #d8e3e7;
 }

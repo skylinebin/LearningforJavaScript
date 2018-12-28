@@ -5,6 +5,12 @@
  * 
  */
 
+/****
+ * 
+ * showPic.min.js 是使用 Google Closure Compiler 压缩后的版本
+ * 
+ */
+
 showPic = (whichpic) => {
     let sourceDom = whichpic.getAttribute("href");
     let placeholder = document.getElementById("placeholder");
@@ -21,3 +27,23 @@ countBodyChildren = () => {
 }
 
 // window.onload = countBodyChildren;
+
+popUp = (winURL) => {
+    window.open(winURL, "popup", "width=320,height=480");
+}
+
+prepareLinks = () => {
+    if (!document.getElementsByTagName) return false;
+    let links = document.getElementsByTagName("a");
+    for (let i = 0; i < links.length; i++) {
+        if (links[i].getAttribute("class") == "pop-input") {
+            links[i].onclick = () => {
+                popUp(this.getAttribute("href"));
+                return false;
+            }
+        }
+        
+    }
+}
+
+window.onload = prepareLinks;
