@@ -1,0 +1,38 @@
+body {
+    font-family: "Helvetica","Arial",serif;
+    color: #333;
+    background-color: #d8e3e7;
+    margin: 1em 10%;
+}
+
+h1 {
+    color: #2177b8;
+    background-color: transparent;
+}
+
+a {
+    color: #d2357d;
+    background-color: transparent;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+ul {
+    padding: 0;
+}
+
+ol {
+    float: left;
+    padding: 1 em;
+    list-style: none;
+}
+
+img {
+    display: block;
+    margin: 5em auto;
+    clear: both;
+}
+
+#description {
+    text-align: center;
+}
