@@ -72,6 +72,45 @@ prepareGallery = () => {
 }
 
 
+// 创建在 DOM 后插入的方法
+insertAfter = (newElement, targetElement) => {
+    let parent = targetElement.parentNode;
+    if (parent.lastChild == targetElement) {
+        parent.appendChild(newElement);
+    } else {
+        parent.insertBefore(newElement, targetElement.nextSibling);
+    }
+}
+
+
+// 添加显示图片和 placeholder 的DOM
+preparePlaceholder = () => {
+    if (!document.createElement) return false;
+    if (!document.createTextNode) return false;
+    if (!document.getElementById) return false;
+    if (!document.getElementById("imageGallery")) return false;
+    let placeholder = document.createElement("img");
+    placeholder.setAttribute("id","placeholder");
+    placeholder.setAttribute("src", "assets/images/placeholder.png");
+    placeholder.setAttribute("alt", "this image gallery");
+    let description = document.createElement("p");
+    description.setAttribute("id", "description");
+    let desctext = document.createTextNode("Choose an image.");
+    description.appendChild(desctext);
+
+    let gallery = document.getElementById("imageGallery");
+    // gallery.parentNode.insertBefore(placeholder, gallery);
+    // gallery.parentNode.insertBefore(description, gallery);
+    insertAfter(placeholder, gallery);
+    insertAfter(description, placeholder);
+
+
+}
+
+
+
+
+
 addLoadEvent = (func) => {
     let oldLoad = window.onload;
     if (typeof window.onload != 'function') {
@@ -84,5 +123,7 @@ addLoadEvent = (func) => {
     }
 }
 
+addLoadEvent(preparePlaceholder);
 addLoadEvent(prepareGallery);
 addLoadEvent(prepareLinks);
+
