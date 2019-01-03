@@ -28,15 +28,15 @@ displayAbbreviations = () => {
     let datatitle = document.createElement("dt");
     let datatitleText = document.createTextNode(key);
     // write key into title
-    datatitle.append(datatitleText);
+    datatitle.appendChild(datatitleText);
     // create definition
     let datadesc = document.createElement("dd");
     let datadescText = document.createTextNode(thisDefinition);
     // write definition into description
-    datadesc.append(datadescText);
+    datadesc.appendChild(datadescText);
     // add title and description into table
-    datalist.append(datatitle);
-    datalist.append(datadesc);
+    datalist.appendChild(datatitle);
+    datalist.appendChild(datadesc);
   }
 
   if (datalist.childNodes.length < 1) return false;
@@ -44,11 +44,11 @@ displayAbbreviations = () => {
   // create a h2 header
   let thisHeader = document.createElement("h2");
   let thisHeaderText = document.createTextNode("Abbreviations");
-  thisHeader.append(thisHeaderText);
+  thisHeader.appendChild(thisHeaderText);
 
   // add header and datalist into this document
-  document.body.append(thisHeader);
-  document.body.append(datalist);
+  document.body.appendChild(thisHeader);
+  document.body.appendChild(datalist);
 }
 
 addLoadEvent(displayAbbreviations);
