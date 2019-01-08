@@ -1,5 +1,10 @@
 # images
 JavaScriptDOM/assets/images
+JavaScriptDOM/assets/videos
+JavaScriptDOM/assets/js/modernizr-html5.js
 
 *.png
 *.jpg
+
+serverEnv/public
+serverEnv/node_modules
