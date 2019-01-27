@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>argumentsFunction</title>
+</head>
+
+<body>
+  <script>
+    function sayHello(name, message) {
+      console.log("Hello " + name + ", " + message);
+    }
+
+    // 等同于使用命名参数  
+    function sayHi() {
+      console.log("Hi " + arguments[0] + ", " + arguments[1]);
+      console.log("Arguments.length: " + arguments.length);
+    }
+
+    sayHello("Nick", "how are you?");
+    sayHi("Nick", "how are you?");
+
+    function doAdd() {
+      if (arguments.length === 1) {
+        console.log(arguments[0] + 10);
+      } else if (arguments.length === 2) {
+        console.log(arguments[0] + arguments[1]);
+      }
+    }
+
+    // arguments 与 传入的参数可以混用
+    function doAddTwo(numone, numtwo) {
+      if (arguments.length === 1) {
+        console.log(numone + 10);
+      } else if (arguments.length === 2) {
+        console.log(arguments[0] + numtwo);
+      }
+    }
+
+    doAdd(23, 50);
+
+    // arguments 的值 与传入参数的值保持同步
+    function changeArguments(numone, numtwo) {
+      arguments[1] = 10;
+      console.log(arguments[0] + num2); // numone + 10
+    }
+  </script>
+</body>
+
+</html>
