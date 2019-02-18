@@ -28,6 +28,55 @@
         pageHeight = document.body.clientHeight;
       }
     }
+
+    // 检测 浏览器调用 window.open() 打开的弹出窗口是否被屏蔽  
+    var blocked = false;
+    try {
+      var wroxWin = window.open("http://www.wrox.com", "_blank");
+      if (wroxWin == null) {
+        blocked = true;
+      }
+    } catch (error) {
+      blocked = true;
+    }
+    if (blocked) {
+      console.log("The popup was blocked!");
+    }
+
+    // 超时调用 与 间歇调用  
+    // 使用 超时调用模拟间歇调用  
+    var countNum = 0;
+    var numMax = 10;
+    function incrementNumber() {
+      countNum++;
+
+      if (countNum < numMax) {
+        setTimeout(incrementNumber, 500);
+      } else {
+        console.log("Cycle ended!");
+      }
+    }
+
+    setTimeout(incrementNumber, 500);
+
+    // 以上代码常用于替换以下代码 
+    
+    // var num = 0;
+    // var max = 10;
+    // var intervalId = null;
+    // function incrementNumber() {
+    //   num++;
+
+    //   if (num < max) {
+    //    clearInterval(intervalId);
+    //    console.log("Cycle ended!"); 
+    //   }
+    // }
+    // 
+    // intervalId = setInterval(incrementNumber, 500);
+    // 
+    // 
+
   </script>  
 </body>
 </html>
