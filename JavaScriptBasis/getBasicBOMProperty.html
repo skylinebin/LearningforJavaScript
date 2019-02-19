@@ -8,6 +8,7 @@
 </head>
 <body>
 
+  <script src="./userAgentDetection.js"></script>
   <script>
     // 跨浏览器获取 窗口左边和上边的位置
     var leftPos = (typeof window.screenLeft == "number") ? window.screenLeft : window.screenX;
@@ -60,7 +61,7 @@
     setTimeout(incrementNumber, 500);
 
     // 以上代码常用于替换以下代码 
-    
+
     // var num = 0;
     // var max = 10;
     // var intervalId = null;
@@ -76,6 +77,10 @@
     // intervalId = setInterval(incrementNumber, 500);
     // 
     // 
+    var thisClient = client;
+    console.log(thisClient.engine);
+    console.log(thisClient.browser);
+    console.log(thisClient.system);
 
   </script>  
 </body>
