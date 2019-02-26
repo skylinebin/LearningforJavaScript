@@ -6,6 +6,7 @@
  */
 
 var EventUtil = {
+  // add Event Handler
   addHandler: function (element, type, handler) {
     if (element.addEventListener) {
       // DOM2 level function 
@@ -18,6 +19,23 @@ var EventUtil = {
       element["on"+ type] = handler;
     }
   },
+  // add get event function
+  getEvent: function (event) {
+    return event ? event : window.event;
+  },
+  // add get target of this event
+  getTarget: function (event) {
+    return event.target || event.srcElement;
+  },
+  // add cancle default action of this event
+  preventDefault: function (event) {
+    if (event.preventDefault) {
+      event.preventDefault();
+    } else {
+      event.returnValue = false;
+    }
+  },
+  // add remove event handler
   removeHandler: function (element, type, handler) {
     if (element.removeEventListener) {
       element.removeEventListener(type, handler, false);
@@ -25,6 +43,14 @@ var EventUtil = {
       element.detachEvent("on"+ type, handler);
     } else {
       element["on"+ type] = null;
+    }
+  },
+  // add stop bubble event flow
+  stopPropagation: function (event) {
+    if (event.stopPropagation) {
+      event.stopPropagation();
+    } else {
+      event.cancleBubble = true;
     }
   }
 };
@@ -41,3 +67,22 @@ EventUtil.addHandler(btn, "click", handler);
 
 // remove event
 EventUtil.removeHandler(btn, "click", handler);
+
+// get event & target
+btn.onclick = function (event) {
+  event = EventUtil.getEvent(event);
+  var target = EventUtil.getTarget(event);
+}
+
+// cancle default action
+var link = document.getElementById("myLink");
+link.onclick = function (event) {
+  event = EventUtil.getEvent(event);
+  EventUtil.preventDefault(event);
+}
+
+// stop propagation
+btn.onclick = function (event) {
+  event = EventUtil.getEvent(event);
+  EventUtil.stopPropagation(event);
+}
