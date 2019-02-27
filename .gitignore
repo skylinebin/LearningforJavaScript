@@ -8,3 +8,5 @@ JavaScriptDOM/assets/js/modernizr-html5.js
 
 serverEnv/public
 serverEnv/node_modules
+
+ES6/Babel/node_modules
