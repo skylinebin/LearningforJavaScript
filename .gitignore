@@ -11,3 +11,6 @@ serverEnv/node_modules
 
 ES6/Babel/node_modules
 ES6/Babel/build
+
+ES6/rollupPro/node_modules
+ES6/rollupPro/build
