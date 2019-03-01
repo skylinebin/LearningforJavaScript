@@ -6,6 +6,7 @@
  */
 
 var EventUtil = {
+
   // add Event Handler
   addHandler: function (element, type, handler) {
     if (element.addEventListener) {
@@ -19,14 +20,17 @@ var EventUtil = {
       element["on"+ type] = handler;
     }
   },
+
   // add get event function
   getEvent: function (event) {
     return event ? event : window.event;
   },
+
   // add get target of this event
   getTarget: function (event) {
     return event.target || event.srcElement;
   },
+
   // add cancle default action of this event
   preventDefault: function (event) {
     if (event.preventDefault) {
@@ -35,6 +39,7 @@ var EventUtil = {
       event.returnValue = false;
     }
   },
+
   // add remove event handler
   removeHandler: function (element, type, handler) {
     if (element.removeEventListener) {
@@ -45,12 +50,47 @@ var EventUtil = {
       element["on"+ type] = null;
     }
   },
+
   // add stop bubble event flow
   stopPropagation: function (event) {
     if (event.stopPropagation) {
       event.stopPropagation();
     } else {
       event.cancleBubble = true;
+    }
+  },
+
+  // add get related target
+  getRelatedTarget: function (event) {
+    if (event.relatedTarget) {
+      return event.relatedTarget;
+    } else if (event.toElement) {
+      return event.toElement;
+    } else if (event.fromElement) {
+      return event.fromElement;
+    } else {
+      return null;
+    }
+  },
+
+  // add get button event
+  getButton: function (event) {
+    if (document.implementation.hasFeature("MouseEvents", "2.0")) {
+      return event.button;
+    } else {
+      switch (event.button) {
+        case 0:
+        case 1:
+        case 3:
+        case 5:
+        case 7:
+          return 0;
+        case 2:
+        case 6:
+          return 2;
+        case 4:
+          return 1;
+      }
     }
   }
 };
@@ -86,3 +126,19 @@ btn.onclick = function (event) {
   event = EventUtil.getEvent(event);
   EventUtil.stopPropagation(event);
 }
+
+// get target and related target
+var div = document.getElementById("myDiv");
+EventUtil.addHandler(div, "mouseout", function(event){
+  event = EventUtil.getEvent(event);
+  var target = EventUtil.getTarget(event);
+  var relatedTarget = EventUtil.getRelatedTarget(event);
+  console.log("Moused out of " + target.tagName + " to " + relatedTarget.tagName);
+})
+
+// test MouseEvents
+var div = document.getElementById("myDiv");
+EventUtil.addHandler(div, "mousedown", function(event){
+  event = EventUtil.getEvent(event);
+  console.log(EventUtil.getButton(event));
+})
