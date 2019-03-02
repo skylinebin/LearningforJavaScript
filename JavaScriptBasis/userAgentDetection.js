@@ -190,3 +190,5 @@ var client = function() {
   };
 
 }();
+
+export default client;

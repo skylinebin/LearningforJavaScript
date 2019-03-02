@@ -5,6 +5,9 @@
  * 
  */
 
+import client from './userAgentDetection.js'
+
+
 var EventUtil = {
 
   // add Event Handler
@@ -92,6 +95,15 @@ var EventUtil = {
           return 1;
       }
     }
+  },
+
+  // add wheel Delta
+  getWheelDelta: function (event) {
+    if (event.wheelDelta) {
+      return (client.engine.opera && client.engine.opera < 9.5 ? -event.wheelDelta : event.wheelDelta);
+    } else {
+      return -event.detail * 40;
+    }
   }
 };
 
@@ -112,6 +124,7 @@ EventUtil.removeHandler(btn, "click", handler);
 btn.onclick = function (event) {
   event = EventUtil.getEvent(event);
   var target = EventUtil.getTarget(event);
+  console.log(target);
 }
 
 // cancle default action
