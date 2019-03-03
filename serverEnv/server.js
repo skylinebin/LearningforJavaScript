@@ -8,15 +8,8 @@ const path = require('path');
 // 引入配置文件
 const config = require('./config');
 
-
-
-// const MongoClient = require('mongodb').MongoClient;
-
-// const mogourl = `mongodb://${config.mongoUser}:${config.mongoPass}@${config.mongoHost}:${config.mongoPort}/${config.mongoDb}`;
-
 // 创建一个 express 实例
 const app = express();
-
 
 
 app.use('/hello', (request, response, next) => {
@@ -32,8 +25,6 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 // 创建 HTTP Server 而不是直接使用 express 监听
 const server = http.createServer(app);
-
-
 
 // 监听端口，等待连接
 // 启动 HTTP 服务
