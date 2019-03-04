@@ -55,3 +55,16 @@ class Dog extends Animal{
 const husky = new Dog('Husky');
 husky.eat();
 husky.say();
+
+/* // 箭头函数可以解决 this 的指代问题
+function fn() {
+  console.log('real', this); // real {a:100}
+
+  var arr = [1, 2, 3];
+  arr.map(item => {
+    console.log(this); // {a: 100}
+  })
+}
+fn.call({
+  a: 100
+}); */

@@ -104,6 +104,15 @@ var EventUtil = {
     } else {
       return -event.detail * 40;
     }
+  },
+
+  // add keyCode event
+  getCharCode: function (event) {
+    if (typeof event.charCode == "number") {
+      return event.charCode;
+    } else {
+      return event.keyCode;
+    }
   }
 };
 
@@ -155,3 +164,14 @@ EventUtil.addHandler(div, "mousedown", function(event){
   event = EventUtil.getEvent(event);
   console.log(EventUtil.getButton(event));
 })
+
+// test key event
+var textbox = document.getElementById("myText");
+EventUtil.addHandler(textbox, "kwypress", function(event){
+  event = EventUtil.getEvent(event);
+  console.log(EventUtil.getCharCode(event));
+})
+// String.fromCharCode() change Code to string
+
+// Check ability of this browser
+// document.implementation.hasFeature("CompositionEvent","3.0");
