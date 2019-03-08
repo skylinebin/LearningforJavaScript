@@ -27,6 +27,7 @@
   window.$ = $;
 
   $.fn = {
+    constructor: zepto.Z,
     css: function (key, value) {
       console.log('css');
     },
