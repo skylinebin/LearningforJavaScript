@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script src="http://how2j.cn/study/jquery.min.js"></script>
+  
+    <script>
+    var a = new Array(5,2,4,2,3,3,1,4,2,5);
+    a.sort();
+    $.unique(a);
+    $.each( a, function(i, n){
+      document.write( "元素[" + i + "] : " + n + "<br>" );
+    })
+    document.close();
+      
+
+    $.each(["a", "b", "c"], function(i, n)
+    {
+      console.log("Item #" + i + ": " + n);//可以获取到i值
+    });
+
+
+    $.grep( [0,1,2], function(n,i){
+      return n > 0;
+    });
+
+    </script> 
+</body>
+</html>
