@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>测试 Object.defineProperty() 实现双向数据绑定</title>
+</head>
+<body>
+  <div id="app">
+    <input type="text" id="a">
+    <span id="b"></span>
+  </div>
+  <script>
+    let obj = {};
+    Object.defineProperty(obj,'vue',{
+      get: function(){
+        console.log('get value:'+val);
+        return val;
+      },
+      set: function(newVal){
+        val = newVal;
+        console.log('set val:'+val);
+        document.getElementById('a').value = val;
+        document.getElementById('b').innerHTML = val;
+      }
+    });
+    document.addEventListener('keyup',function(e){
+      obj.vue = parseInt(e.target.value) + 1;
+    });
+  </script>
+</body>
+</html>
