@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Event Handle</title>
+</head>
+<body>
+  <div id="div1">
+    <a href="https://imooc.com" id="link1">imooc1.com</a>
+    <a href="https://imooc.com" id="link2">imooc2.com</a>
+    <a href="https://imooc.com" id="link3">imooc3.com</a>
+    <a href="https://imooc.com" id="link4">imooc4.com</a>
+    <p id="p1">激活</p>
+    <p id="p2">取消</p>
+  </div>
+  <div id="id2">
+    <p id="p3">取消</p>
+    <p id="p4">取消</p>
+  </div>
+  <script>
+    // function bindEvent(elem, type, fn){
+    //     if(elem.addEventListener){
+    //         elem.addEventListener(type,fn);
+    //     }else if (elem.attachEvent){
+    //         elem.attachEvent("on"+type, fn);
+    //     }else {
+    //         elem["on"+type] = fn;
+    //     }
+    // }
+
+    // // 事件代理
+    // var div1 = document.getElementById('div1');
+    // bindEvent(div1, 'click', function(e){
+    //   e.preventDefault();
+    //   console.log(e.target);
+    // })
+
+    function bindEvent(elem, type, selector, fn){
+      if(fn === null){
+          fn = selector;
+          selector = null;
+      }
+      elem.addEventListener(type, function(e){
+          var target;
+          if(selector){
+              target = e.target;
+              // console.log(target.nodeName);
+              if(target.nodeName === String(selector).toUpperCase()){
+                  fn.call(target, e)
+              }
+          } else {
+              fn.call(this, e);
+          }
+      })
+}
+
+    // 使用代理的情况
+    var div1 = document.getElementById('div1');
+    bindEvent(div1, 'click', 'a', function(e){
+        e.preventDefault();
+        console.log(this.innerHTML); // 事件触发时改变执行环境，所以需要 this
+    })
+
+    // 不使用代理的情况
+    var a = document.getElementById('a1');
+    bindEvent(div1, 'click', function(e){
+        console.log(a.innerHTML);
+    })
+  
+  </script>
+</body>
+</html>
