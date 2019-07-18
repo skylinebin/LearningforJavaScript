@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Strategy Parttern</title>
+</head>
+<body>
+  <h1>Strategy Parttern</h1>
+  <div id="div" style="position: absolute;background:blue">This is div.</div>
+  <script>
+    let strategies = {
+      "S": function(salary){
+        return salary * 4;
+      },
+      "A": function(salary){
+        return salary * 3;
+      },
+      "B": function(salary){
+        return salary * 2;
+      }
+    };
+
+    let calculateBonus = function(level, salary){
+      return strategies[level](salary);
+    }
+    console.log(calculateBonus('S', 20000));
+    console.log(calculateBonus('A', 15000));
+
+    // 使用策略模式实现 div 不同缓动算法的动画
+  
+    let tween = {
+      linear: function(t, b, c, d){
+        return c*t/d + b;
+      },
+      easeIn: function(t, b, c, d){
+        return c *(t /= d)*t + b;
+      },
+      strongEaseIn: function(t, b, c, d){
+        return c *(t /= d)*t*t*t*t + b;
+      },
+      strongEaseOut: function(t, b, c, d){
+        return c *((t = t / d - 1)*t*t*t*t + 1) + b;
+      },
+      sineaseIn: function(t, b, c, d){
+        return c *(t /= d)*t*t + b;
+      },
+      sineaseOut: function(t, b, c, d){
+        return c *((t = t/d - 1)*t*t + 1) + b;
+      }
+    };
+
+    let Animate = function(dom){
+      this.dom = dom;
+      this.startTime = 0;
+      this.startPos = 0;
+      this.endPos = 0;
+      this.propertyName = null;
+      this.easing = null;
+      this.duration = null;
+    };
+
+    Animate.prototype.start = function(propertyName, endPos, duration, easing){
+      this.startTime = +new Date;
+      this.startPos = this.dom.getBoundingClientRect()[propertyName];
+      this.propertyName = propertyName; // dom 节点需要被改变的 CSS 属性名
+      this.endPos = endPos;
+      this.duration = duration;
+      this.easing = tween[easing]; // 使用策略模式载入设置的缓动算法  
+
+      let self = this;
+      let timeId = setInterval(function(){
+        if(self.step() === false){
+          clearInterval(timeId);
+        }
+      },19);
+    };
+
+    Animate.prototype.step = function(){
+      let t = +new Date;
+      if(t >= this.startTime + this.duration){
+        this.update(this.endPos);
+        return false;
+      }
+
+      let pos = this.easing(t - this.startTime, this.startPos, this.endPos - this.startPos, this.duration);
+      this.update(pos);
+    }
+
+    Animate.prototype.update = function(pos){
+      this.dom.style[this.propertyName] = pos + 'px';
+    };
+
+    let div = document.getElementById('div');
+    let animate = new Animate(div);
+    // animate.start('left', 1200, 5000, 'strongEaseOut');
+    animate.start('left', 1200, 1000, 'strongEaseIn');
+    // animate.start('top', 650, 5000, 'sineaseOut');
+    // animate.start('top', 650, 1000, 'strongEaseIn');
+
+
+  </script>
+</body>
+</html>
