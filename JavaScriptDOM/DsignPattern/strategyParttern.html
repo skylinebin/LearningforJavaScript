@@ -31,6 +31,7 @@
     // 使用策略模式实现 div 不同缓动算法的动画
   
     let tween = {
+      // 封装好缓动动画的算法
       linear: function(t, b, c, d){
         return c*t/d + b;
       },
@@ -51,6 +52,7 @@
       }
     };
 
+    // 动画处理 类
     let Animate = function(dom){
       this.dom = dom;
       this.startTime = 0;
@@ -61,15 +63,17 @@
       this.duration = null;
     };
 
+    // 动画启动和定义的原型方法
     Animate.prototype.start = function(propertyName, endPos, duration, easing){
       this.startTime = +new Date;
-      this.startPos = this.dom.getBoundingClientRect()[propertyName];
+      this.startPos = this.dom.getBoundingClientRect()[propertyName]; // 获取当前 dom 指定属性所在的位置
       this.propertyName = propertyName; // dom 节点需要被改变的 CSS 属性名
-      this.endPos = endPos;
-      this.duration = duration;
+      this.endPos = endPos; // 定义结束时停在的位置
+      this.duration = duration; // 定义动画执行时间
       this.easing = tween[easing]; // 使用策略模式载入设置的缓动算法  
 
       let self = this;
+      // 启动定时器，执行动画
       let timeId = setInterval(function(){
         if(self.step() === false){
           clearInterval(timeId);

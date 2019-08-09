@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>From Checking</title>
+</head>
+<body>
+  <form action="#" id="registerForm" method="post">
+    Please input username: <input type="text" name="userName" /> <br />
+    Please input password: <input type="text" name="password" /> <br />
+    Please input phonenum: <input type="text" name="phoneNumber" /> <br />
+    <button>提交</button>
+  </form>
+  <script>
+    let strategies = {
+      isNonEmpty: function(value, errorMsg){
+        if (value === '') {
+          return errorMsg;
+        }
+      },
+      minLength: function(value, length, errorMsg){
+        if (value.length < length) {
+          return errorMsg;
+        }
+      },
+      isMobile: function(value, errorMsg){
+        if (!/(^1[3|5|7|8][0-9]{9}$)/.test(value)) { // 简单校验是否有效的手机号码
+          return errorMsg;
+        }
+      }
+    };
+
+    let Validator = function(){
+      this.cache = [];
+    }
+
+    Validator.prototype.add = function(dom, rule, errorMsg){
+      let ary = rule.split(':'); // 对于有自定义参数的方法，将策略和参数分开
+      // 将校验的步骤用空函数封装起来，并放入 cache 中
+      this.cache.push(function(){
+        let strategy = ary.shift(); // 取出传入的策略
+        ary.unshift(dom.value); // 放入策略校验时需要校验的值
+        ary.push(errorMsg); // 放入错误信息
+        return strategies[strategy].apply(dom, ary); // 更改策略的执行环境和需要传入的参数
+      });
+    };
+
+    Validator.prototype.start = function(){
+      for (let i = 0, validatorFunc; validatorFunc=this.cache[i++]; ) {
+        let msg = validatorFunc(); // 开始校验并取得校验后的返回信息，返回信息不为空即中断循环
+        if(msg){
+          return msg;
+        }
+      }
+    }
+
+    let registerForm = document.getElementById('registerForm');
+
+    let validataFunc = function(){
+      let validator = new Validator(); // 生成策略处理的实例
+      // 给实例添加需要处理的策略
+      validator.add(registerForm.userName, 'isNonEmpty', 'Username can not be null');
+      validator.add(registerForm.password, 'minLength:6', 'The length of password can not less than 6');
+      validator.add(registerForm.phoneNumber, 'isMobile', 'The form of phonenum is not right');
+
+      // 启动策略检查
+      let errorMsg = validator.start();
+      return errorMsg;
+    };
+
+    registerForm.onsubmit = function(){
+      let errorMsg = validataFunc();
+      if(errorMsg){
+        alert(errorMsg);
+        return false; // 有错误即阻止表单提交
+      }
+    };
+
+  </script>
+</body>
+</html>
